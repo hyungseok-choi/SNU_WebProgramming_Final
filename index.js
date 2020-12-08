@@ -13,7 +13,7 @@ app.set("view engine", "ejs");
 app.engine("html", require("ejs").renderFile);
 
 mongoose.connect(
-  "mongodb+srv://tester:Z5knBqgfuOqzb2Pu@cluster0.ye4cg.mongodb.net/Game0?retryWrites=true&w=majority",
+  "mongodb+srv://mud-user:mud123@cluster0.pfhgn.mongodb.net/db1?retryWrites=true&w=majority",
   { useNewUrlParser: true, useUnifiedTopology: true }
 );
 
@@ -51,7 +51,7 @@ app.post("/signup", async (req, res) => {
     str: 5,
     def: 5,
     x: 0,
-    y: 0
+    y: 0,
   });
 
   const key = crypto.randomBytes(24).toString("hex");
