@@ -3,7 +3,7 @@ const fs = require("fs");
 const mongoose = require("mongoose");
 const crypto = require("crypto");
 
-const { constantManager, mapManager } = require("./datas/Manager");
+const { constantManager, mapManager, itemManager } = require("./datas/Manager");
 const { Player } = require("./models/Player");
 
 const app = express();
@@ -13,7 +13,7 @@ app.set("view engine", "ejs");
 app.engine("html", require("ejs").renderFile);
 
 mongoose.connect(
-  "mongodb+srv://tester:Z5knBqgfuOqzb2Pu@cluster0.ye4cg.mongodb.net/Game0?retryWrites=true&w=majority",
+  "mongodb+srv://mud-user:mud123@cluster0.pfhgn.mongodb.net/db1?retryWrites=true&w=majority",
   { useNewUrlParser: true, useUnifiedTopology: true }
 );
 
@@ -100,10 +100,15 @@ app.post("/action", authentication, async (req, res) => {
 
         event = { description: "늑대와 마주쳐 싸움을 벌였다." };
         player.incrementHP(-1);
-      } else if (_event.type === "item") {
+      } else if (_event.type === "heal") {
         event = { description: "포션을 획득해 체력을 회복했다." };
         player.incrementHP(1);
         player.HP = Math.min(player.maxHP, player.HP + 1);
+      } else if (_event.type === "item") {
+        event = { description: "땅에서 반짝이는 물건을 발견했다."};
+        const item = {idx:1, quantity:4};
+        player.items.push(item);
+    
       }
     }
 

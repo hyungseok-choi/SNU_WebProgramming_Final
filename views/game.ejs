@@ -12,7 +12,9 @@
     <div id="status">
         HP: <span id="HP"> 5 / 5</span>
     </div>
-    <div id="game"></div>
+    <div id="game">
+        <span></span>
+    </div>
     <div id="event_result"></div>
     <div id="control">
       <button value="1">동</button>
@@ -55,7 +57,8 @@ const sendAction = (action, params = {}) => {
           $('#event_result').text("아무일도 일어나지 않았다.");
         }
 
-        $('#HP').text(`${player.HP} / ${player.maxHP}`)
+        $('#HP').text(`${player.HP} / ${player.maxHP}`);
+        
       });
 
     } 
