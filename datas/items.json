@@ -2,25 +2,33 @@
     {
       "id": 1,
       "name": "나무목도",
-      "str": 1
+      "str": 1,
+      "def": 1,
+      "maxHP": 2
     },
   
     {
       "id": 2,
       "name": "나무목검",
-      "str": 2
+      "str": 2,
+      "def": 1,
+      "maxHP": 3
     },
   
     {
       "id": 1000,
       "name": "천갑옷",
-      "def": 1
+      "str": 0,
+      "def": 1,
+      "maxHP": 2
     },
   
     {
       "id": 1001,
       "name": "가죽갑옷",
-      "def": 2
+      "str": 1,
+      "def": 2,
+      "maxHP": 3
     }
-  ]
+]
   

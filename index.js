@@ -3,7 +3,7 @@ const fs = require("fs");
 const mongoose = require("mongoose");
 const crypto = require("crypto");
 
-const { constantManager, mapManager } = require("./datas/Manager");
+const { constantManager, mapManager, itemManager } = require("./datas/Manager");
 const { Player } = require("./models/Player");
 
 const app = express();
@@ -94,16 +94,31 @@ app.post("/action", authentication, async (req, res) => {
 
     if (events.length > 0) {
       // TODO : 확률별로 이벤트 발생하도록 변경
-      const _event = events[0];
+      // 한 Field에 있는 event 개수는 최대 2개라고 가정
+      if(Math.random()*100 > parseInt(events[0].percent)){
+        const _event = events[0]
+      } else {
+        const _event = events[1]
+      }
+  
       if (_event.type === "battle") {
         // TODO: 이벤트 별로 events.json 에서 불러와 이벤트 처리
 
         event = { description: "늑대와 마주쳐 싸움을 벌였다." };
         player.incrementHP(-1);
-      } else if (_event.type === "item") {
+      } else if (_event.type === "heal") {
         event = { description: "포션을 획득해 체력을 회복했다." };
         player.incrementHP(1);
         player.HP = Math.min(player.maxHP, player.HP + 1);
+      } else if (_event.type === "item") {
+        if(player.items.length > 10){ //Inventory의 개수는 10개로 한정한다 .
+          event = { description: `가방이 가득찼다`}
+        } else{
+          const { name } = itemManager.getRandItem()
+          event = { description: `땅에서 반짝이는 ${name}을 발견했다.`};
+          console.log(event);
+          player.items.push({name, quantity:1});
+        }
       }
     }
 
@@ -111,5 +126,9 @@ app.post("/action", authentication, async (req, res) => {
     return res.send({ player, field, event });
   }
 });
+
+// function getRandomitem() {
+  
+// }
 
 app.listen(3000);

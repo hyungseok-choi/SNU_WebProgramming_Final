@@ -32,6 +32,37 @@ class MapManager extends Manager {
     return this.fields[`${x}_${y}`];
   }
 }
+
+
+class ItemManager extends Manager {
+  constructor(datas) {
+    super();
+    this.items = {};
+
+    datas.forEach((item) => {
+      this.items[`${item.id}`] = {
+        name: item['name'],
+        str: item['str'],
+        def: item['def'],
+        maxHP: item['maxHP']
+      }
+    })
+  };
+
+  getItem(id) {
+    return this.items[id];
+  }
+
+  getRandItem() {
+    const keys = Object.keys(this.items)
+    const num = keys.length;
+    const randomNumber = Math.floor(Math.random() * (num));
+    
+    return this.items[keys[randomNumber]];
+  }
+}
+
+
 const constantManager = new ConstantManager(
   JSON.parse(fs.readFileSync(__dirname + "/constants.json"))
 );
@@ -40,7 +71,12 @@ const mapManager = new MapManager(
   JSON.parse(fs.readFileSync(__dirname + "/map.json"))
 );
 
+const itemManager = new ItemManager(
+  JSON.parse(fs.readFileSync(__dirname + "/items.json"))
+)
+
 module.exports = {
   constantManager,
-  mapManager
+  mapManager,
+  itemManager
 };
