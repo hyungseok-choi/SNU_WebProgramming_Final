@@ -49,8 +49,15 @@ class ItemManager extends Manager {
     })
   };
 
-  getItem(id) {
-    return this.items[id];
+  getItem(name) {
+    const keys = Object.keys(this.items)
+    const num = keys.length;
+    for(i = 0; i< num; i++){
+      if(this.items[keys[i]].name === name){
+        return this.items[keys[i]]
+      }
+    }
+    return "Not Found"
   }
 
   getRandItem() {
@@ -60,6 +67,7 @@ class ItemManager extends Manager {
     
     return this.items[keys[randomNumber]];
   }
+  
 }
 
 

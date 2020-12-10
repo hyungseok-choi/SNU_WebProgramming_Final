@@ -91,14 +91,15 @@ app.post("/action", authentication, async (req, res) => {
     player.y = y;
 
     const events = field.events;
+    let _evnets = {};
 
     if (events.length > 0) {
       // TODO : 확률별로 이벤트 발생하도록 변경
       // 한 Field에 있는 event 개수는 최대 2개라고 가정
       if(Math.random()*100 > parseInt(events[0].percent)){
-        const _event = events[0]
+        _event = events[0]
       } else {
-        const _event = events[1]
+        _event = events[1]
       }
   
       if (_event.type === "battle") {
@@ -114,10 +115,13 @@ app.post("/action", authentication, async (req, res) => {
         if(player.items.length > 10){ //Inventory의 개수는 10개로 한정한다 .
           event = { description: `가방이 가득찼다`}
         } else{
-          const { name } = itemManager.getRandItem()
-          event = { description: `땅에서 반짝이는 ${name}을 발견했다.`};
+          const item = itemManager.getRandItem()
+          event = { description: `땅에서 반짝이는 ${item.name}을 발견했다.`};
+          player.addstr(item.str);
+          player.adddef(item.def);
+          player.addmaxHP(item.maxHP);
           console.log(event);
-          player.items.push({name, quantity:1});
+          player.items.push({name: item.name, str: item.str, def: item.def, maxHP: item.maxHP, quantity:1});
         }
       }
     }

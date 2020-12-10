@@ -7,21 +7,41 @@
     </head>
 
   <body>
-    <div id="position"></div>
+    <div class="map">
+      ══════════ Map ══════════
+      <div id="position"></div>
+      <div id="game"></div>
+      <div id="event_result"></div>
+      <div id="control">
+        <button value="1">동</button>
+        <button value="3">서</button>
+        <button value="2">남</button>
+        <button value="0">북</button>
+      </div>
+    </div>
+    <div class="player">
+      ══════════ Player ══════════
+      <div class="user">
+        ID: <span id="playerid"></span>
+      </div>
+      <div class="plv">
+        LV: <span id ="lv"></span>
+        EXP: <span id="exp"></span>
+      </div>
+      <div class="stat">
+        STR: <span id="str"></span>
+        DEF: <span id="def"></span>
+        HP: <span id="HP"> HP / maxHP</span>
+      </div>
+      <div id="status">
+      </div>
+    </div>
+    <div class="inventory">
+      ════════ Inventory ══════════
+      <div id ="items">
+      </div>
+    </div>
 
-    <div id="status">
-        HP: <span id="HP"> 5 / 5</span>
-    </div>
-    <div id="game">
-        <span></span>
-    </div>
-    <div id="event_result"></div>
-    <div id="control">
-      <button value="1">동</button>
-      <button value="3">서</button>
-      <button value="2">남</button>
-      <button value="0">북</button>
-    </div>
 
   <script>
 
@@ -35,7 +55,6 @@ const sendAction = (action, params = {}) => {
         data: `action=${action}&direction=${params.direction}`,
       }).done((req) => {
         const { player, field, event } = req;
-
         $('#game').text(field.description);
         $('#position').text(`(${field.x},${field.y})`);
         const x = field.x;
@@ -51,6 +70,13 @@ const sendAction = (action, params = {}) => {
           }
         })
 
+                
+        $('#playerid').text(player.name);
+        $('#lv').text(player.level);
+        $('#exp').text(player.exp);
+        $('#str').text(player.str + "+" + player.stradd);
+        $('#def').text(player.def + "+" + player.defadd);
+
         if (event) {
           $('#event_result').text(event.description);
         } else {
@@ -59,9 +85,17 @@ const sendAction = (action, params = {}) => {
 
         $('#HP').text(`${player.HP} / ${player.maxHP}`);
         
+        let items = ""
+        for(let i = 0; i <player.items.length; i++){
+          const item = player.items[i];
+          items += "\n║" + item.name + " ║ str + "+ item.str +" ║ def + "+ item.def +" ║ maxHP + "+ item.maxHP +" ║\n"
+        }
+        var obj = $('#items').text(items);
+        obj.html(obj.html().replace(/\n/g,'<br/>'));
       });
-
-    } 
+    }
+    
+  
     const key = localStorage.getItem('_key');
     if (!key) {
       location.href = "/";
