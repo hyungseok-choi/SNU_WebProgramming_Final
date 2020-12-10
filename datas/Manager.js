@@ -52,6 +52,14 @@ class ItemManager extends Manager {
   getItem(id) {
     return this.items[id];
   }
+
+  getRandItem() {
+    const keys = Object.keys(this.items)
+    const num = keys.length;
+    const randomNumber = Math.floor(Math.random() * (num));
+    
+    return this.items[keys[randomNumber]];
+  }
 }
 
 

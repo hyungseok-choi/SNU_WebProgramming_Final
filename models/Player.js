@@ -14,7 +14,10 @@ const schema = new Schema({
   def: { type: Number, default: 5 },
   x: { type: Number, default: 0 },
   y: { type: Number, default: 0 },
-  items: [{idx: Number, quantity: Number}]
+  items: [{name: String, quantity: {
+    type: Number,
+    default: 1
+  }}]
 });
 
 schema.methods.incrementHP = function (val) {
