@@ -1,0 +1,17 @@
+const { Player } = require("./models/Player");
+const { monsters } = require("./datas/monsters.json")
+
+    // 데미지 : str - def
+function battle(target, type) {
+    //1. 플레이어가 공격
+
+
+};
+
+
+
+
+}
+
+
+

@@ -1,7 +1,7 @@
 {
   "name": "final",
   "version": "1.0.0",
-  "description": "",
+  "description": "조별로 온라인에서 텍스트로 즐길 수 있는 머드게임을 제작한다.  \r 뼈대코드는 https://codesandbox.io/s/sleepy-blackburn-ixxn0?file=/src/readme.md:606-625 를 참고한다.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
