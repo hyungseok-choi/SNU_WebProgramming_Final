@@ -7,40 +7,52 @@
     </head>
 
   <body>
-    <div class="map">
-      ══════════ Map ══════════
-      <div id="position"></div>
-      <div id="game"></div>
-      <div id="event_result"></div>
-      <div id="control">
-        <button value="1">동</button>
-        <button value="3">서</button>
-        <button value="2">남</button>
-        <button value="0">북</button>
+    <div style="display: flex; justify-content:space-around">
+      <div class="player" style="padding: 20px">
+        ══════════ Player ══════════
+        <br/><br/>
+        <div class="user">
+          ID: <span id="playerid"></span>
+        </div>
+        <br/><br/>
+        <div class="plv">
+          LV: <span id ="lv"></span>
+          <br/>
+          EXP: <span id="exp"></span>
+          <br/>
+          <span id="expbar"></span>
+        </div>
+        <br/><br/>
+        <div class="stat">
+          STR: <span id="str"></span>
+          <br/>
+          DEF: <span id="def"></span>
+          <br/>
+          HP: <span id="HP"> HP / maxHP</span>
+          <br/>
+          <span id="HPbar"></span>
+        </div>
+        <div id="status">
+        </div>
       </div>
-    </div>
-    <div class="player">
-      ══════════ Player ══════════
-      <div class="user">
-        ID: <span id="playerid"></span>
+      <div class="map" style="padding: 20px">
+        ══════════ Map ════════════
+        <div id="position"></div>
+        <div id="game"></div>
+        <div id="event_result"></div>
+        <div id="control">
+          <button value="1">동</button>
+          <button value="3">서</button>
+          <button value="2">남</button>
+          <button value="0">북</button>
+        </div>
       </div>
-      <div class="plv">
-        LV: <span id ="lv"></span>
-        EXP: <span id="exp"></span>
+      <div class="inventory" style="padding: 20px">
+        ════════ Inventory ══════════
+        <div id ="items">
+        </div>
       </div>
-      <div class="stat">
-        STR: <span id="str"></span>
-        DEF: <span id="def"></span>
-        HP: <span id="HP"> HP / maxHP</span>
-      </div>
-      <div id="status">
-      </div>
-    </div>
-    <div class="inventory">
-      ════════ Inventory ══════════
-      <div id ="items">
-      </div>
-    </div>
+  </div>
 
 
   <script>
@@ -69,11 +81,23 @@ const sendAction = (action, params = {}) => {
             });
           }
         })
-
+        
+        function showBar(curr, max){
+          let bar = "[";
+          for(let i = 0; i < curr; i++){
+            bar += "/";
+          }
+          for(let i = 0; i <max-curr; i++){
+            bar += "-";
+          }
+          bar += "]";
+          return bar;
+        }
                 
         $('#playerid').text(player.name);
         $('#lv').text(player.level);
         $('#exp').text(player.exp);
+        $('#expbar').text(showBar(player.exp, 30));
         $('#str').text(player.str + "+" + player.stradd);
         $('#def').text(player.def + "+" + player.defadd);
 
@@ -83,7 +107,8 @@ const sendAction = (action, params = {}) => {
           $('#event_result').text("아무일도 일어나지 않았다.");
         }
 
-        $('#HP').text(`${player.HP} / ${player.maxHP}`);
+        $('#HP').text(`${player.HP} / ${player.maxHP}+${player.maxHPadd}`);
+        $('#HPbar').text(showBar(player.HP, player.maxHP+player.maxHPadd));
         
         let items = ""
         for(let i = 0; i <player.items.length; i++){
