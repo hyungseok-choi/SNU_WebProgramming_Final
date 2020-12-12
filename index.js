@@ -102,14 +102,35 @@ app.post("/action", authentication, async (req, res) => {
         _event = events[1]
       }
   
-      if (_event.type === "battle") {
-        // TODO: 이벤트 별로 events.json 에서 불러와 이벤트 처리
+      if (_event.type === "battle") {  // TODO: 이벤트 별로 events.json 에서 불러와 이벤트 처리
+        
+        //몬스터 선택
         const [monster, middleName] = monsterManager.meetRandMonster()
         event = { description: `${middleName} ${monster.name}이 인사를 건내온다.` };
-        player.monsterAtk(monster);
-        const damage = monsterAtk()
-        event = { description: `${middleName} ${monster.name}이 나에게 화를 낸다.` };
 
+        //전투부분
+        const damage = player.monsterAtk(monster)
+        monster.hp -= player.str-monster.def
+        event = { description: `${middleName} ${monster.name}에게 ${monster.hp -= 200-monster.def}의 데미지를 입혔다.`}
+        if (monster.hp <= 0) {
+          player.playerExpUP()
+          event = { description: `${middleName} ${monster.name}를 쫓아냈다.`}
+          player.playerLvUP()
+        }
+        if (damage !== 0 ){
+        event = { description: `${middleName} ${monster.name}이 나에게 ${damage}만큼 피해를 입혔다.` }
+        } else {
+          event = { description: `${middleName} ${monster.name}의 공격은 견딜만 하다.` }
+        }
+        
+
+        //죽음
+        if (player.playerDie() === 1) {
+          event = { description: `${middleName} ${monster.name}의 공격으로 사망했습니다.` }
+          event = { description: `${monster.name}은 너무 강력하다. 처음 위치로 돌아갑니다.` }
+          player.playerInit();
+          }
+      
       } else if (_event.type === "heal") {
         event = { description: "포션을 획득해 체력을 회복했다." };
         player.incrementHP(1);

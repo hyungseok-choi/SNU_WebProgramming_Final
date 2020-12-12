@@ -50,10 +50,11 @@ class MonsterManager extends Manager {
   };
 
   meetRandMonster() {
+    const cloneMonster = obj => JSON.parse(JSON.stringify(obj));
     const keys = Object.keys(this.monsters)
     const num = keys.length
     const randomNumber = Math.floor(Math.random() * (num));
-    const randomMonster = this.monsters[keys[randomNumber]]
+    const randomMonster = cloneMonster(this.monsters[keys[randomNumber]])
     const middleName = randomMonster.middleName[Math.floor(Math.random() * (randomMonster.middleName.length))]
     return [randomMonster, middleName];
   }
