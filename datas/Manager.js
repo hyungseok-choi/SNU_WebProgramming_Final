@@ -33,6 +33,35 @@ class MapManager extends Manager {
   }
 }
 
+class MonsterManager extends Manager {
+  constructor(datas) {
+    super();
+    this.monsters = {};
+  
+    datas.forEach((monster) => {
+        this.monsters[`${monster.id}`] = {
+          name: monster['name'],
+          str: monster['str'],
+          def: monster['def'],
+          hp: monster['hp'],
+          middleName: monster['middleName']
+      }
+    })
+  };
+
+  meetRandMonster() {
+    const keys = Object.keys(this.monsters)
+    const num = keys.length
+    const randomNumber = Math.floor(Math.random() * (num));
+    const randomMonster = this.monsters[keys[randomNumber]]
+    const middleName = randomMonster.middleName[Math.floor(Math.random() * (randomMonster.middleName.length))]
+    return [randomMonster, middleName];
+  }
+
+
+}
+
+
 
 class ItemManager extends Manager {
   constructor(datas) {
@@ -83,8 +112,13 @@ const itemManager = new ItemManager(
   JSON.parse(fs.readFileSync(__dirname + "/items.json"))
 )
 
+const monsterManager = new MonsterManager(
+  JSON.parse(fs.readFileSync(__dirname + "/monsters.json"))
+)
+
 module.exports = {
   constantManager,
   mapManager,
-  itemManager
+  itemManager,
+  monsterManager
 };

@@ -43,6 +43,17 @@ schema.methods.addmaxHP = function (val) {
   this.maxHPadd = this.maxHPadd + val;
 };
 
+
+
+schema.methods.monsterAtk = function (monster) {
+  let damage = monster.str - this.def;
+  if (damage <= 0) {
+    damage = Math.round(Math.random())
+  }
+  this.HP = this.HP - damage
+  return damage
+};
+
 const Player = mongoose.model("Player", schema);
 
 module.exports = {

@@ -3,7 +3,7 @@ const fs = require("fs");
 const mongoose = require("mongoose");
 const crypto = require("crypto");
 
-const { constantManager, mapManager, itemManager } = require("./datas/Manager");
+const { constantManager, mapManager, itemManager, monsterManager } = require("./datas/Manager");
 const { Player } = require("./models/Player");
 
 const app = express();
@@ -104,9 +104,12 @@ app.post("/action", authentication, async (req, res) => {
   
       if (_event.type === "battle") {
         // TODO: 이벤트 별로 events.json 에서 불러와 이벤트 처리
+        const [monster, middleName] = monsterManager.meetRandMonster()
+        event = { description: `${middleName} ${monster.name}이 인사를 건내온다.` };
+        player.monsterAtk(monster);
+        const damage = monsterAtk()
+        event = { description: `${middleName} ${monster.name}이 나에게 화를 낸다.` };
 
-        event = { description: "늑대와 마주쳐 싸움을 벌였다." };
-        player.incrementHP(-1);
       } else if (_event.type === "heal") {
         event = { description: "포션을 획득해 체력을 회복했다." };
         player.incrementHP(1);
@@ -120,7 +123,6 @@ app.post("/action", authentication, async (req, res) => {
           player.addstr(item.str);
           player.adddef(item.def);
           player.addmaxHP(item.maxHP);
-          console.log(event);
           player.items.push({name: item.name, str: item.str, def: item.def, maxHP: item.maxHP, quantity:1});
         }
       }
