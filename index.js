@@ -91,7 +91,7 @@ app.post("/action", authentication, async (req, res) => {
     player.y = y;
 
     const events = field.events;
-    let _evnets = {};
+    let _events = {};
 
     if (events.length > 0) {
       // TODO : 확률별로 이벤트 발생하도록 변경
