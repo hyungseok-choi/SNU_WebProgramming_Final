@@ -50,8 +50,8 @@ app.post("/signup", async (req, res) => {
     HP: 10,
     str: 5,
     def: 5,
-    x: 0,
-    y: 0,
+    x: 3,
+    y: 1,
   });
 
   const key = crypto.randomBytes(24).toString("hex");
