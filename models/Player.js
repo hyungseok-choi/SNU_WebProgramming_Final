@@ -45,7 +45,6 @@ schema.methods.addmaxHP = function (val) {
 };
 
 
-
 schema.methods.monsterAtk = function (monster) {
   let damage = monster.str - this.def;
   if (damage <= 0) {

@@ -105,10 +105,42 @@ app.post("/action", authentication, async (req, res) => {
       if (_event.type === "battle") {  // TODO: 이벤트 별로 events.json 에서 불러와 이벤트 처리
         
         //몬스터 선택
-        const [monster, middleName] = monsterManager.meetRandMonster()
-        event = { description: `${middleName} ${monster.name}이 인사를 건내온다.` };
+        const [randomMonster, middleName] = monsterManager.meetRandMonster()
+        event = { description: `${middleName} ${randomMonster.name}이 인사를 건내온다.` };
+        async function monsterBattle() {
+          let damage = await player.monsterAtk(randomMonster)
+          for(let i = 0; i <= 10; i++){
+          randomMonster.hp -= await player.str-randomMonster.def
+          console.log(player.str-randomMonster.def)
+          console.log(randomMonster.hp)
+          console.log(player.str-randomMonster.def)
+          event = await { description: `${middleName} ${randomMonster.name}에게 ${player.str-randomMonster.def}의 데미지를 입혔다.`}
+          console.log(event)
+          if (randomMonster.hp <= 0) {
+            await player.playerExpUP()
+            event = await { description: `${middleName} ${randomMonster.name}를 쫓아냈다.`}
+            console.log(event)
+            await player.playerLvUP()
+          }
+          if (damage !== 0 ){
+          event = await { description: `${middleName} ${randomMonster.name}이 나에게 ${damage}만큼 피해를 입혔다.` }
+          console.log(event)
+          } else {
+            event = await { description: `${middleName} ${randomMonster.name}의 공격은 견딜만 하다.` }
+            console.log(event)
+          }
+          if (player.playerDie() === 1) {
+            event = await { description: `${middleName} ${randomMonster.name}의 공격으로 사망했습니다.` }
+            console.log(event)
+            event = await { description: `${randomMonster.name}은 너무 강력하다. 처음 위치로 돌아갑니다.` }
+            console.log(event)
+            await player.playerInit();
+            }
+          }
+        }
+        monsterBattle()
 
-        //전투부분
+        /*//전투부분
         const damage = player.monsterAtk(monster)
         monster.hp -= player.str-monster.def
         event = { description: `${middleName} ${monster.name}에게 ${monster.hp -= 200-monster.def}의 데미지를 입혔다.`}
@@ -130,7 +162,7 @@ app.post("/action", authentication, async (req, res) => {
           event = { description: `${monster.name}은 너무 강력하다. 처음 위치로 돌아갑니다.` }
           player.playerInit();
           }
-      
+      */
       } else if (_event.type === "heal") {
         event = { description: "포션을 획득해 체력을 회복했다." };
         player.incrementHP(1);
