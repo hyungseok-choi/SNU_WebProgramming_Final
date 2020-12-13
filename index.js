@@ -110,32 +110,32 @@ app.post("/action", authentication, async (req, res) => {
         async function monsterBattle() {
           let damage = await player.monsterAtk(randomMonster)
           for(let i = 0; i <= 10; i++){
-          randomMonster.hp -= await player.str-randomMonster.def
-          console.log(player.str-randomMonster.def)
-          console.log(randomMonster.hp)
-          console.log(player.str-randomMonster.def)
-          event = await { description: `${middleName} ${randomMonster.name}에게 ${player.str-randomMonster.def}의 데미지를 입혔다.`}
-          console.log(event)
-          if (randomMonster.hp <= 0) {
-            await player.playerExpUP()
-            event = await { description: `${middleName} ${randomMonster.name}를 쫓아냈다.`}
+            randomMonster.hp -= await player.str-randomMonster.def
+            console.log(player.str-randomMonster.def)
+            console.log(randomMonster.hp)
+            console.log(player.str-randomMonster.def)
+            event = await { description: `${middleName} ${randomMonster.name}에게 ${player.str-randomMonster.def}의 데미지를 입혔다.`}
             console.log(event)
-            await player.playerLvUP()
-          }
-          if (damage !== 0 ){
-          event = await { description: `${middleName} ${randomMonster.name}이 나에게 ${damage}만큼 피해를 입혔다.` }
-          console.log(event)
-          } else {
-            event = await { description: `${middleName} ${randomMonster.name}의 공격은 견딜만 하다.` }
-            console.log(event)
-          }
-          if (player.playerDie() === 1) {
-            event = await { description: `${middleName} ${randomMonster.name}의 공격으로 사망했습니다.` }
-            console.log(event)
-            event = await { description: `${randomMonster.name}은 너무 강력하다. 처음 위치로 돌아갑니다.` }
-            console.log(event)
-            await player.playerInit();
+            if (randomMonster.hp <= 0) {
+              await player.playerExpUP()
+              event = await { description: `${middleName} ${randomMonster.name}를 쫓아냈다.`}
+              console.log(event)
+              await player.playerLvUP()
             }
+            if (damage !== 0 ){
+            event = await { description: `${middleName} ${randomMonster.name}이 나에게 ${damage}만큼 피해를 입혔다.` }
+            console.log(event)
+            } else {
+              event = await { description: `${middleName} ${randomMonster.name}의 공격은 견딜만 하다.` }
+              console.log(event)
+            }
+            if (player.playerDie() === 1) {
+              event = await { description: `${middleName} ${randomMonster.name}의 공격으로 사망했습니다.` }
+              console.log(event)
+              event = await { description: `${randomMonster.name}은 너무 강력하다. 처음 위치로 돌아갑니다.` }
+              console.log(event)
+              await player.playerInit();
+              }
           }
         }
         monsterBattle()
