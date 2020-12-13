@@ -12,8 +12,8 @@ const schema = new Schema({
   HP: { type: Number, default: 10 },
   str: { type: Number, default: 5 },
   def: { type: Number, default: 5 },
-  x: { type: Number, default: 0 },
-  y: { type: Number, default: 0 },
+  x: { type: Number, default: 4 },
+  y: { type: Number, default: 2 },
   stradd: { type: Number, default: 0 },
   defadd: { type: Number, default: 0 },
   maxHPadd: { type: Number, default: 0 },
@@ -64,7 +64,7 @@ schema.methods.playerDie = function () {
 
 schema.methods.playerInit = function () {
   this.HP = 10
-  this.x = 0
+  this.x = 9
   this.y = 0
   const num = this.items.length
   const randomNumber = Math.floor(Math.random() * (num));
@@ -72,7 +72,7 @@ schema.methods.playerInit = function () {
 };
 
 schema.methods.playerExpUP = function () {
-  this.exp += 50
+  //this.exp += 50
 };
 
 schema.methods.playerLvUP = function () {
