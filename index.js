@@ -150,6 +150,13 @@ app.post("/action", authentication, async (req, res) => {
             await player.playerExpUP()
             await player.playerLvUP()
             }
+            if (player.playerDie() === 1) {
+              event = await { description: `${middleName} ${randomMonster.name}의 공격으로 사망했습니다.` }
+              console.log(event)
+              event = await { description: `${randomMonster.name}은 너무 강력하다. 처음 위치로 돌아갑니다.` }
+              console.log(event)
+              await player.playerInit();
+              }
           }
 
         async function aa() {

@@ -84,10 +84,10 @@ const sendAction = (action, params = {}) => {
         
         function showBar(curr, max){
           let bar = "[";
-          for(let i = 0; i < curr; i++){
+          for(let i = 0; i < (curr/max)*30; i++){
             bar += "/";
           }
-          for(let i = 0; i <max-curr; i++){
+          for(let i = 0; i <(1-curr/max)*30; i++){
             bar += "-";
           }
           bar += "]";
@@ -97,7 +97,7 @@ const sendAction = (action, params = {}) => {
         $('#playerid').text(player.name);
         $('#lv').text(player.level);
         $('#exp').text(player.exp);
-        $('#expbar').text(showBar(player.exp, 30));
+        $('#expbar').text(showBar(player.exp, player.maxExp));
         $('#str').text(player.str + "+" + player.stradd);
         $('#def').text(player.def + "+" + player.defadd);
 
