@@ -23,13 +23,17 @@ class MapManager extends Manager {
         y: field[1],
         description: field[2],
         canGo: field[3],
-        events: field[4]
+        events: field[4],
+        college: field[5]
       };
     });
   }
 
   getField(x, y) {
     return this.fields[`${x}_${y}`];
+  }
+  fieldName() {
+    return this.fields[5]
   }
 }
 
