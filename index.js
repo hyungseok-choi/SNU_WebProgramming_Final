@@ -75,11 +75,11 @@ app.post("/action", authentication, async (req, res) => {
     let x = req.player.x;
     let y = req.player.y;
     if (direction === 0) {
-      y -= 1;
+      y += 1;
     } else if (direction === 1) {
       x += 1;
     } else if (direction === 2) {
-      y += 1;
+      y -= 1;
     } else if (direction === 3) {
       x -= 1;
     } else {
@@ -140,7 +140,7 @@ app.post("/action", authentication, async (req, res) => {
         }
         monsterBattle()
 
-        /*//전투부분
+        //전투부분
         const damage = player.monsterAtk(monster)
         monster.hp -= player.str-monster.def
         event = { description: `${middleName} ${monster.name}에게 ${monster.hp -= 200-monster.def}의 데미지를 입혔다.`}
@@ -162,7 +162,7 @@ app.post("/action", authentication, async (req, res) => {
           event = { description: `${monster.name}은 너무 강력하다. 처음 위치로 돌아갑니다.` }
           player.playerInit();
           }
-      */
+      
       } else if (_event.type === "heal") {
         event = { description: "포션을 획득해 체력을 회복했다." };
         player.incrementHP(1);

@@ -46,6 +46,7 @@
           <button value="2">남</button>
           <button value="0">북</button>
         </div>
+        <div id ="minimap"></div>
       </div>
       <div class="inventory" style="padding: 20px">
         ════════ Inventory ══════════
@@ -93,6 +94,22 @@ const sendAction = (action, params = {}) => {
           bar += "]";
           return bar;
         }
+
+        function minimap(x, y){
+          let map = "";
+          for(let i = 9; i >= 0; i--){
+            for(let j = 0; j<10; j++){
+              if(i===y && j===x){
+                map += "■";
+              } else{
+                map += "□";
+              }
+            }
+            map += "\n";
+          }
+          return map;
+        }
+      
                 
         $('#playerid').text(player.name);
         $('#lv').text(player.level);
@@ -100,6 +117,8 @@ const sendAction = (action, params = {}) => {
         $('#expbar').text(showBar(player.exp, player.maxExp));
         $('#str').text(player.str + "+" + player.stradd);
         $('#def').text(player.def + "+" + player.defadd);
+        const mmap = $('#minimap').text(minimap(player.x, player.y));
+        mmap.html(mmap.html().replace(/\n/g,'<br/>'));
 
         if (event) {
           $('#event_result').text(event.description);
@@ -127,8 +146,6 @@ const sendAction = (action, params = {}) => {
     }
 
     sendAction("query");
-
-    
 
   </script>
   </body>
