@@ -67,6 +67,36 @@ class MonsterManager extends Manager {
   }
 }
 
+class BossManager extends Manager {
+  constructor(datas) {
+    super()
+    this.monsters = {}
+
+    datas.forEach((monster) => {
+      this.monsters[`${monster.id}`] = {
+        name: monster['name'],
+        str: monster['str'],
+        def: monster['def'],
+        hp: monster['hp'],
+        middleName: monster['middleName'],
+      }
+    })
+  }
+
+  meetRandMonster() {
+    const cloneMonster = (obj) => JSON.parse(JSON.stringify(obj))
+    const keys = Object.keys(this.monsters)
+    const num = keys.length
+    const randomNumber = Math.floor(Math.random() * num)
+    const randomMonster = cloneMonster(this.monsters[keys[randomNumber]])
+    const middleName =
+      randomMonster.middleName[
+        Math.floor(Math.random() * randomMonster.middleName.length)
+      ]
+    return [randomMonster, middleName]
+  }
+}
+
 class ItemManager extends Manager {
   constructor(datas) {
     super()
@@ -106,6 +136,8 @@ const constantManager = new ConstantManager(
   JSON.parse(fs.readFileSync(__dirname + '/constants.json'))
 )
 
+
+
 const mapManager = new MapManager(
   JSON.parse(fs.readFileSync(__dirname + '/map.json'))
 )
@@ -118,9 +150,14 @@ const monsterManager = new MonsterManager(
   JSON.parse(fs.readFileSync(__dirname + '/monsters.json'))
 )
 
+const bossManager = new BossManager(
+  JSON.parse(fs.readFileSync(__dirname + '/boss.json'))
+)
+
 module.exports = {
   constantManager,
   mapManager,
   itemManager,
   monsterManager,
+  bossManager
 }

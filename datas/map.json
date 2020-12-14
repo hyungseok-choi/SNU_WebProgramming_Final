@@ -1,15 +1,22 @@
 {
   "id": 1,
   "fields": [
-    [0, 0, "치대입구다. 차길은 막아두던데...?", [1, 1, 0, 0], [], "치대"],
+    [0, 0, "치대입구다. 차길은 막아두던데...?", [1, 1, 0, 0], 
+    [
+      { "type": "battle", "monster": 1, "percent": 10 },
+      { "type": "item", "item": 1, "percent": 15 },
+      { "type": "item", "item": 1, "percent": 100 }
+    ],
+     "치대"],
     [
       1,
       0,
       "수의대인가? 여긴 처음인 것 같아.",
       [1, 1, 0, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 15 },
+        { "type": "item", "item": 1, "percent": 60 },
+        { "type": "nothing", "percent": 100 }
       ],
       "수의대"
     ],
@@ -18,7 +25,11 @@
       0,
       "엄청 큰 동물병원이다. 여기서는 코끼리도 치료할 수 있을까?",
       [1, 1, 0, 1],
-      [],
+      [
+        { "type": "battle", "monster": 1, "percent": 5 },
+        { "type": "item", "item": 1, "percent": 50 },
+        { "type": "nothing", "percent": 100 }
+      ],
       "수의대"
     ],
     [
@@ -28,16 +39,21 @@
       [1, 1, 0, 1],
       [
         { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 },
-        "체육관"
-      ]
+        { "type": "item", "item": 1, "percent": 75 },
+        { "type": "nothing", "percent": 100 }
+      ],
+      "체육관"
     ],
     [
       4,
       0,
       "헉 입학할 때 오고 안왔던 입학본부잖아?",
       [1, 1, 0, 1],
-      [],
+      [
+        { "type": "battle", "monster": 1, "percent": 5 },
+        { "type": "item", "item": 1, "percent": 30 },
+        { "type": "nothing", "percent": 100 }
+      ],
       "입학본부"
     ],
     [
@@ -46,32 +62,49 @@
       "오늘도 미술관에서 전시회를 하는군. 5년째 가겠다고 말만 했어.",
       [1, 1, 0, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 },
-        "미술관"
-      ]
+        { "type": "battle", "monster": 1, "percent": 10 },
+        { "type": "item", "item": 1, "percent": 20 },
+        { "type": "nothing", "percent": 100 }
+      ],
+      "미술관"
     ],
-    [6, 0, "여기서 얼마나 더 내려가야 할까?", [1, 1, 0, 1], [], "정문"],
+    [6, 0, "여기서 얼마나 더 내려가야 할까?", [1, 1, 0, 1], 
+    [
+        { "type": "battle", "monster": 1, "percent": 10 },
+        { "type": "item", "item": 1, "percent": 40 },
+        { "type": "nothing", "percent": 100 }
+    ],
+      "정문"
+    ]
+    ,
     [
       7,
       0,
       "차단기 옆으로 자동차가 지나간다. 어이 조심해! 위험했다구!",
       [1, 1, 0, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 10 },
+        { "type": "item", "item": 1, "percent": 50 },
+        { "type": "nothing", "percent": 100 }
       ],
       "정문"
     ],
-    [8, 0, "이 나무는 언제 봐도 정말 크단 말이지..", [1, 1, 0, 1], [], "정문"],
+    [8, 0, "이 나무는 언제 봐도 정말 크단 말이지..", [1, 1, 0, 1], 
+    [
+        { "type": "battle", "monster": 1, "percent": 10 },
+        { "type": "item", "item": 1, "percent": 80 },
+        { "type": "nothing", "percent": 100 }
+    ], 
+    "정문"],
     [
       9,
       0,
       "정문이다. 버스를 탈 수는 없겠지?",
       [1, 0, 0, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 40 },
+        { "type": "item", "item": 1, "percent": 80 },
+        { "type": "nothing", "percent": 100 }
       ],
       "정문"
     ],
@@ -80,7 +113,11 @@
       1,
       "치대 건물이다. 치대생은 여기에 있을까 혜화에 있을까? ",
       [1, 1, 1, 0],
-      [],
+      [
+        { "type": "battle", "monster": 1, "percent": 20 },
+        { "type": "item", "item": 1, "percent": 40 },
+        { "type": "nothing", "percent": 100 }
+      ],
       "치대"
     ],
     [
@@ -89,8 +126,9 @@
       "행정대는 학부생이 없나?",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 50 },
+        { "type": "item", "item": 1, "percent": 80 },
+        { "type": "nothing", "percent": 100 }
       ],
       "행정대"
     ],
@@ -99,7 +137,11 @@
       1,
       "여긴.... 중간고사를 본 곳이군... 불길해...",
       [1, 1, 1, 1],
-      [],
+      [
+        { "type": "battle", "monster": 1, "percent": 20 },
+        { "type": "item", "item": 1, "percent": 50 },
+        { "type": "nothing", "percent": 100 }
+      ],
       "경영대"
     ],
     [
@@ -107,7 +149,11 @@
       1,
       "진 : 벤창웹 양학하는 윗공대 녀석들을 혼내줘!",
       [1, 1, 1, 1],
-      [],
+      [
+        { "type": "battle", "monster": 1, "percent": 20 },
+        { "type": "item", "item": 1, "percent": 50 },
+        { "type": "nothing", "percent": 100 }
+      ],
       "경영대"
     ],
     [
@@ -115,7 +161,11 @@
       1,
       "우와! 엄청 큰 대운동장! 저기선 누가 경기를 할까?",
       [1, 1, 1, 1],
-      [],
+      [
+        { "type": "battle", "monster": 1, "percent": 30 },
+        { "type": "item", "item": 1, "percent": 50 },
+        { "type": "nothing", "percent": 100 }
+      ],
       "대운동장"
     ],
     [
@@ -123,15 +173,23 @@
       1,
       "흠... 가도 가도 끝이 없군. 정말 크단 말이지",
       [1, 1, 1, 1],
-      [],
+      [
+        { "type": "battle", "monster": 1, "percent": 20 },
+        { "type": "item", "item": 1, "percent": 60 },
+        { "type": "nothing", "percent": 100 }
+      ],
       "경영대"
     ],
     [
       6,
       1,
-      "와 28동이 이제 사라지는구나. 저기서 시험 봤던게 벌써 몇년 전이야..",
+      "삼거리는 언제 봐도 정말 크구나?",
       [1, 1, 1, 1],
-      [],
+      [
+        { "type": "battle", "monster": 1, "percent": 70 },
+        { "type": "item", "item": 1, "percent": 90 },
+        { "type": "nothing", "percent": 100 }
+      ],
       "정문"
     ],
     [
@@ -140,8 +198,9 @@
       "IBK는 왜 우리 학교에 이런 건물을 지어줬을까?",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 20 },
+        { "type": "item", "item": 1, "percent": 50 },
+        { "type": "nothing", "percent": 100 }
       ],
       "정문"
     ],
@@ -151,8 +210,9 @@
       "아니 이 시간에도 학교에 사람이 있잖아?",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 100 },
-        { "type": "item", "item": 1, "percent": 0 }
+        { "type": "battle", "monster": 1, "percent": 60 },
+        { "type": "item", "item": 1, "percent": 90 },
+        { "type": "nothing", "percent": 100 }
       ],
       "정문"
     ],
@@ -162,31 +222,41 @@
       "지금 퇴근을 하는 사람들은 일을 좋아하는 사람들이겠지?",
       [1, 0, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 100 },
-        { "type": "item", "item": 1, "percent": 0 }
+        { "type": "battle", "monster": 1, "percent": 20 },
+        { "type": "item", "item": 1, "percent": 70 },
+        { "type": "nothing", "percent": 100 }
       ],
       "정문"
     ],
-    [0, 2, "언어교육원....? 텝스 만드는 곳인가?", [1, 1, 1, 0], []],
+    [0, 2, "언어교육원....? 텝스 만드는 곳인가?", [1, 1, 1, 0], 
+    [
+        { "type": "battle", "monster": 1, "percent": 30 },
+        { "type": "item", "item": 1, "percent": 80 },
+        { "type": "nothing", "percent": 100 }
+    ],
+     "언어교육원"
+    ],
     [
       1,
       2,
       "옛날에 사회대에 파파이스가 있었는데......",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 40 },
+        { "type": "item", "item": 1, "percent": 80 },
+        { "type": "nothing", "percent": 100 }
       ],
       "사회대"
     ],
     [
       2,
       2,
-      "222동이다! 222HZ가 222동 때문이라지?",
+      "222동이다! 222HZ라는 이름이 222동 때문이라지? 카페나 가볼까?",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "heal", "heal": 1, "percent": 50 },
+        { "type": "item", "item": 1, "percent": 70 },
+        { "type": "nothing", "percent": 100 }
       ],
       "생활과학대"
     ],
@@ -196,8 +266,9 @@
       "생과대 학식이 진짜 맛있는데.. 식품영양학과 때문인가?",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 20 },
+        { "type": "item", "item": 1, "percent": 50 },
+        { "type": "nothing", "percent": 100 }
       ],
       "생활과학대"
     ],
@@ -206,7 +277,11 @@
       2,
       "여기가 그 유명한 법대.... 아무나 못간다지?",
       [1, 1, 1, 1],
-      [],
+      [
+        { "type": "battle", "monster": 1, "percent": 30 },
+        { "type": "item", "item": 1, "percent": 30 },
+        { "type": "nothing", "percent": 100 }
+      ],
       "법대"
     ],
     [
@@ -216,7 +291,8 @@
       [1, 1, 1, 1],
       [
         { "type": "battle", "monster": 1, "percent": 80 },
-        { "type": "item", "item": 1, "percent": 20 }
+        { "type": "item", "item": 1, "percent": 80 },
+        { "type": "nothing", "percent": 100 }
       ],
       "규장각"
     ],
@@ -226,8 +302,9 @@
       "설입으로 가는 셔틀은 이미 끊겼어...",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 80 },
-        { "type": "item", "item": 1, "percent": 20 }
+        { "type": "battle", "monster": 1, "percent": 50 },
+        { "type": "item", "item": 1, "percent": 70 },
+        { "type": "nothing", "percent": 100 }
       ],
       "셔틀줄"
     ],
@@ -238,8 +315,10 @@
       [1, 1, 1, 1],
       [
         { "type": "battle", "monster": 1, "percent": 90 },
-        { "type": "item", "item": 1, "percent": 10 }
-      ]
+        { "type": "item", "item": 1, "percent": 95 },
+        { "type": "nothing", "percent": 100 }
+      ],
+      "셔틀줄"
     ],
     [
       8,
@@ -248,7 +327,8 @@
       [1, 1, 1, 1],
       [
         { "type": "battle", "monster": 1, "percent": 100 },
-        { "type": "item", "item": 1, "percent": 0 }
+        { "type": "item", "item": 1, "percent": 50 },
+        { "type": "nothing", "percent": 100 }
       ],
       "자연대"
     ],
@@ -258,8 +338,9 @@
       "농대 학식이 먹고싶어....",
       [1, 0, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 20 },
+        { "type": "item", "item": 1, "percent": 50 },
+        { "type": "nothing", "percent": 100 }
       ],
       "농생대"
     ],
@@ -268,7 +349,11 @@
       3,
       "보건대학원은 의대랑 다른 곳이겠지?",
       [1, 1, 1, 0],
-      [],
+      [
+        { "type": "battle", "monster": 1, "percent": 10 },
+        { "type": "item", "item": 1, "percent": 30 },
+        { "type": "nothing", "percent": 100 }
+      ],
       "보건대학원"
     ],
     [
@@ -277,8 +362,9 @@
       "인문대는 정말 과가 많은 것 같아.",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 15 },
+        { "type": "item", "item": 1, "percent": 30 },
+        { "type": "nothing", "percent": 100 }
       ],
       "인문대"
     ],
@@ -287,7 +373,11 @@
       3,
       "사회대를 다니던 그 친구는 잘 지내고 있겠지...?",
       [1, 1, 1, 1],
-      [],
+      [
+        { "type": "battle", "monster": 1, "percent": 20 },
+        { "type": "item", "item": 1, "percent": 40 },
+        { "type": "nothing", "percent": 100 }
+      ],
       "사회대"
     ],
     [
@@ -296,20 +386,27 @@
       "음악 소리가 여기서 나는 거였구나!",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 30 },
+        { "type": "item", "item": 1, "percent": 50 },
+        { "type": "nothing", "percent": 100 }
       ],
       "예술대"
     ],
-    [4, 3, "법대에서 보이는 노을이 정말 아름답군", [1, 1, 1, 1], [], "법대"],
+    [4, 3, "법대에서 보이는 노을이 정말 아름답군. 카페나 들릴까?", [1, 1, 1, 1], 
+    [
+        { "type": "heal", "monster": 1, "percent": 60 },
+        { "type": "item", "item": 1, "percent": 90 },
+        { "type": "nothing", "percent": 100 }
+    ], "법대"],
     [
       5,
       3,
       "문화관에서 공연 정말 많이 했었는데... 내년에는 볼 수 있을까??",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 20 },
+        { "type": "item", "item": 1, "percent": 40 },
+        { "type": "nothing", "percent": 100 }
       ],
       "문화관"
     ],
@@ -318,7 +415,11 @@
       3,
       "중앙도서관이다! 건물이 정말 허름해..",
       [1, 1, 1, 1],
-      [],
+      [
+        { "type": "battle", "monster": 1, "percent": 80 },
+        { "type": "item", "item": 1, "percent": 90 },
+        { "type": "nothing", "percent": 100 }
+      ],
       "중앙도서관"
     ],
     [
@@ -327,8 +428,9 @@
       "학관에서 밥이나 먹고 갈까?",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 50 },
+        { "type": "item", "item": 1, "percent": 80 },
+        { "type": "nothing", "percent": 100 }
       ],
       "학관"
     ],
@@ -337,7 +439,11 @@
       3,
       "28동에서 시험보던게 엊그제같은데.. 건물을 새로 짓는다니...",
       [1, 1, 1, 1],
-      [],
+      [
+        { "type": "battle", "monster": 1, "percent": 0 },
+        { "type": "item", "item": 1, "percent": 60 },
+        { "type": "nothing", "percent": 100 }
+      ],
       "자연대"
     ],
     [
@@ -346,21 +452,29 @@
       "농대 뒤쪽으로 관악산을 갈 수 있을까?",
       [1, 0, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 60 },
+        { "type": "item", "item": 1, "percent": 80 },
+        { "type": "nothing", "percent": 100 }
       ],
       "농생대"
     ],
-    [0, 4, "국제대학원은 외국인만 다니는 곳인가?", [1, 1, 1, 0], []],
-    "국제대학원",
+    [0, 4, "국제대학원은 외국인만 다니는 곳인가?", [1, 1, 1, 0], 
+    [
+        { "type": "battle", "monster": 1, "percent": 20 },
+        { "type": "item", "item": 1, "percent": 40 },
+        { "type": "nothing", "percent": 100 }
+    ]
+    , 
+    "국제대학원"],
     [
       1,
       4,
       "인문대의 분위기는 공대와 다르구나",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 15 },
+        { "type": "item", "item": 1, "percent": 20 },
+        { "type": "nothing", "percent": 100 }
       ],
       "인문대"
     ],
@@ -369,7 +483,10 @@
       4,
       "사회대 신양이 여긴가봐! 커피나 한잔 해야지",
       [1, 1, 1, 1],
-      [],
+      [
+        { "type": "heal", "heal": 1, "percent": 100 },
+        { "type": "item", "item": 1, "percent": 60 },
+        { "type": "nothing", "percent": 100 }],
       "사회대"
     ],
     [
@@ -378,8 +495,9 @@
       "학교를 조금만 더 일찍 다녔다면 미대에서 빈지노를 볼 수 있었을까?",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 0 },
+        { "type": "item", "item": 1, "percent": 0 },
+        { "type": "nothing", "percent": 100 }
       ],
       "예술대"
     ],
@@ -388,7 +506,11 @@
       4,
       "오리들 이름이 뭐였더라... 트럼프와 바이든이었나...?",
       [1, 1, 1, 1],
-      [],
+      [
+        { "type": "battle", "monster": 1, "percent": 20 },
+        { "type": "item", "item": 1, "percent": 30 },
+        { "type": "nothing", "percent": 100 }
+      ],
       "자하연"
     ],
     [
@@ -397,8 +519,9 @@
       "내 잔디에서 나가!! 라고 해서 총장잔디라지?",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 40 },
+        { "type": "item", "item": 1, "percent": 50 },
+        { "type": "nothing", "percent": 100 }
       ],
       "총장잔디"
     ],
@@ -407,17 +530,22 @@
       4,
       "중앙도서관에서 공부를 좀 하다 갈까?",
       [1, 1, 1, 1],
-      [],
+      [
+        { "type": "battle", "monster": 1, "percent": 60 },
+        { "type": "item", "item": 1, "percent": 65 },
+        { "type": "nothing", "percent": 100 }
+      ],
       "중앙도서관"
     ],
     [
       7,
       4,
-      "나도 학관 동방에 인싸처럼 들어가던 시절이 있었는데...",
+      "나도 학관 동방에 인싸처럼 들어가던 시절이 있었는데... 커피나 마실까?",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "heal", "heal": 1, "percent": 50 },
+        { "type": "battle", "monster": 1, "percent": 90 },
+        { "type": "nothing", "percent": 100 }
       ],
       "학관"
     ],
@@ -426,7 +554,11 @@
       4,
       "자연대 새 건물에는 조교가 상주하고 있어!",
       [1, 1, 1, 1],
-      [],
+      [
+        { "type": "battle", "monster": 1, "percent": 60 },
+        { "type": "item", "item": 1, "percent": 70 },
+        { "type": "nothing", "percent": 100 }
+      ],
       "자연대"
     ],
     [
@@ -435,20 +567,28 @@
       "어디서 빵냄새가 나는데? SPC 연구실인가?",
       [1, 0, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 40 },
+        { "type": "item", "item": 1, "percent": 80 },
+        { "type": "nothing", "percent": 100 }
       ],
       "농생대"
     ],
-    [0, 5, "환경대학원.... 말을 조심하자!", [1, 1, 1, 0], [], "환경대학원"],
+    [0, 5, "환경대학원.... 말을 조심하자!", [1, 1, 1, 0], 
+    [
+        { "type": "battle", "monster": 1, "percent": 30 },
+        { "type": "item", "item": 1, "percent": 50 },
+        { "type": "nothing", "percent": 100 }
+    ]
+    , "환경대학원"],
     [
       1,
       5,
-      "인문대에서 와플이나 하나 먹고 가야겠어",
+      "인문대에서 와플세트나 하나 먹고 가야겠어",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "heal", "heal": 1, "percent": 100 },
+        { "type": "item", "item": 1, "percent": 60 },
+        { "type": "nothing", "percent": 100 }
       ],
       "인문대"
     ],
@@ -457,7 +597,11 @@
       5,
       "못보던 대자보가 붙어있다. 한번 읽어볼까?",
       [1, 1, 1, 1],
-      [],
+      [
+        { "type": "battle", "monster": 1, "percent": 20 },
+        { "type": "item", "item": 1, "percent": 50 },
+        { "type": "nothing", "percent": 100 }
+      ],
       "인문대"
     ],
     [
@@ -466,8 +610,9 @@
       "교양 수업을 들었던 곳이다. 재밋었는데...!",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 30 },
+        { "type": "item", "item": 1, "percent": 40 },
+        { "type": "nothing", "percent": 100 }
       ],
       "인문대"
     ],
@@ -476,7 +621,11 @@
       5,
       "대국...과기글....글기... 요즘 애들은 알려나?",
       [1, 1, 1, 1],
-      [],
+      [
+        { "type": "battle", "monster": 1, "percent": 25 },
+        { "type": "item", "item": 1, "percent": 60 },
+        { "type": "nothing", "percent": 100 }
+      ],
       "인문대"
     ],
     [
@@ -485,8 +634,9 @@
       "행정관은 무슨 일을 하는 곳일까?",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 80 },
+        { "type": "item", "item": 1, "percent": 90 },
+        { "type": "nothing", "percent": 100 }
       ],
       "행정관"
     ],
@@ -495,7 +645,11 @@
       5,
       "내가 입학할 떄만 해도 관정 도서관이라는건 없었는데....",
       [1, 1, 1, 1],
-      [],
+      [
+        { "type": "battle", "monster": 1, "percent": 80 },
+        { "type": "item", "item": 1, "percent": 90 },
+        { "type": "nothing", "percent": 100 }
+      ],
       "관정도서관"
     ],
     [
@@ -504,8 +658,9 @@
       "상산수학관...? 수학의 정석은 대체 얼마나 대단한 책인거지?",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 20 },
+        { "type": "item", "item": 1, "percent": 60 },
+        { "type": "nothing", "percent": 100 }
       ],
       "자연대"
     ],
@@ -514,7 +669,11 @@
       5,
       "이 시간에 버스를 타는 사람들은 대체 뭐지?",
       [1, 1, 1, 1],
-      [],
+      [
+        { "type": "battle", "monster": 1, "percent": 100 },
+        { "type": "item", "item": 1, "percent": 90 },
+        { "type": "nothing", "percent": 100 }
+      ],
       "자연대"
     ],
     [
@@ -523,44 +682,65 @@
       "농식이다! 요즘엔 사람이 없어서 메뉴가 별로 없구나...",
       [1, 0, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 10 },
+        { "type": "item", "item": 1, "percent": 50 },
+        { "type": "nothing", "percent": 100 }
       ],
       "농생대"
     ],
-    [0, 6, "나도 신축 기숙사에서 살고싶어 ", [1, 1, 1, 0], [], "기숙사"],
+    [0, 6, "나도 신축 기숙사에서 살고싶어 ", [1, 1, 1, 0], 
+    [
+        { "type": "battle", "monster": 1, "percent": 30 },
+        { "type": "item", "item": 1, "percent": 50 },
+        { "type": "nothing", "percent": 100 }
+    ],
+     "기숙사"],
     [
       1,
       6,
       "사범대 파스쿠치에서 커피 한잔 마실까?",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "heal", "heal": 1, "percent": 100 },
+        { "type": "item", "item": 1, "percent": 40 },
+        { "type": "nothing", "percent": 100 }
       ],
       "사범대"
     ],
-    [2, 6, "사범대는 정말 멋진 건물이 많구나?", [1, 1, 1, 1], [], "사범대"],
+    [2, 6, "사범대는 정말 멋진 건물이 많구나?", [1, 1, 1, 1], 
+    [
+        { "type": "battle", "monster": 1, "percent": 20 },
+        { "type": "heal", "heal": 1, "percent": 40 },
+        { "type": "nothing", "percent": 100 }
+    ], 
+    "사범대"],
     [
       3,
       6,
       "오호.. 영상에서 사진전을 하나보네....",
       [0, 1, 0, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 0 },
+        { "type": "item", "item": 1, "percent": 40 },
+        { "type": "nothing", "percent": 100 }
       ],
       "관정터널"
     ],
-    [4, 6, "대자보가 정말 많이 붙어있어.", [0, 1, 0, 1], [], "관정터널"],
+    [4, 6, "대자보가 정말 많이 붙어있어.", [0, 1, 0, 1], 
+    [
+        { "type": "battle", "monster": 1, "percent": 50 },
+        { "type": "item", "item": 1, "percent": 80 },
+        { "type": "nothing", "percent": 100 }
+    ], "관정터널"],
     [
       5,
       6,
-      "뚜레쥬르 아이스티 한잔 마시면서 가자",
+      "뚜레쥬르 커피 한잔 마시면서 가자",
       [0, 1, 0, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "heal", "heal": 1, "percent": 100 },
+        { "type": "item", "item": 1, "percent": 40 },
+        { "type": "nothing", "percent": 100 }
       ],
       "관정터널"
     ],
@@ -569,7 +749,11 @@
       6,
       "관정도서관은 정말 멋진 것 같아. 롯데리아만 빼면",
       [1, 1, 1, 1],
-      [],
+      [
+        { "type": "battle", "monster": 1, "percent": 60 },
+        { "type": "item", "item": 1, "percent": 80 },
+        { "type": "nothing", "percent": 100 }
+      ],
       "관정도서관"
     ],
     [
@@ -579,7 +763,8 @@
       [1, 1, 1, 1],
       [
         { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "item", "item": 1, "percent": 90 },
+        { "type": "nothing", "percent": 100 }
       ],
       "아랫공대"
     ],
@@ -588,7 +773,11 @@
       6,
       "멀티미디어 강의실.... 여기가 노트북하기 제일 좋지",
       [1, 1, 1, 1],
-      [],
+      [
+        { "type": "battle", "monster": 1, "percent": 30 },
+        { "type": "item", "item": 1, "percent": 60 },
+        { "type": "nothing", "percent": 100 }
+      ],
       "아랫공대"
     ],
     [
@@ -597,20 +786,28 @@
       "탈원전반대.... 원자핵공학과 건물인가보군...",
       [1, 0, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 60 },
+        { "type": "item", "item": 1, "percent": 80 },
+        { "type": "nothing", "percent": 100 }
       ],
       "아랫공대"
     ],
-    [0, 7, "우리학교 기숙사는 통금이 없지", [1, 1, 1, 0], [], "기숙사"],
+    [0, 7, "우리학교 기숙사는 통금이 없지", [1, 1, 1, 0], 
+    [
+        { "type": "battle", "monster": 1, "percent": 40 },
+        { "type": "item", "item": 1, "percent": 60 },
+        { "type": "nothing", "percent": 100 }
+    ], 
+    "기숙사"],
     [
       1,
       7,
       "사범대는 문과일까 이과일까?",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 55 },
+        { "type": "item", "item": 1, "percent": 70 },
+        { "type": "nothing", "percent": 100 }
       ],
       "사범대"
     ],
@@ -619,7 +816,11 @@
       7,
       "사범대를 나와서 초등학교 선생님은 못하나?",
       [1, 1, 1, 1],
-      [],
+      [
+        { "type": "battle", "monster": 1, "percent": 60 },
+        { "type": "item", "item": 1, "percent": 80 },
+        { "type": "nothing", "percent": 100 }
+      ],
       "사범대"
     ],
     [
@@ -628,24 +829,38 @@
       "약대로 가버린 친구들이 보고싶네.",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 65 },
+        { "type": "item", "item": 1, "percent": 80 },
+        { "type": "nothing", "percent": 100 }
       ],
       "약대"
     ],
-    [4, 7, "여기도 약대건물이었어? 약대도 넓구나?", [1, 1, 1, 1], [], "약대"],
+    [4, 7, "여기도 약대건물이었어? 약대도 넓구나?", [1, 1, 1, 1], 
+    [
+        { "type": "battle", "monster": 1, "percent": 30 },
+        { "type": "item", "item": 1, "percent": 40 },
+        { "type": "nothing", "percent": 100 }
+    ], 
+    "약대"],
     [
       5,
       7,
       "약대는 혜화로 안가겠지?",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 20 },
+        { "type": "heal", "heal": 1, "percent": 40 },
+        { "type": "nothing", "percent": 100 }
       ],
       "약대"
     ],
-    [6, 7, "공대에 들어오니 분위기가 다르군!", [1, 1, 1, 1], [], "아랫공대"],
+    [6, 7, "공대에 들어오니 분위기가 다르군!", [1, 1, 1, 1], 
+    [
+        { "type": "battle", "monster": 1, "percent": 75 },
+        { "type": "item", "item": 1, "percent": 75 },
+        { "type": "nothing", "percent": 100 }
+    ], 
+    "아랫공대"],
     
     [
       7,
@@ -653,12 +868,20 @@
       "가만보자.. 조해공, 원핵공, 에자공, 재료공, 건환공, 산공.... 건축과도 공대인가?",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 60 },
+        { "type": "item", "item": 1, "percent": 80 },
+        { "type": "nothing", "percent": 100 }
       ],
       "아랫공대"
     ],
-    [8, 7, "공깡이다! 짜장면이나 먹고 가자", [1, 1, 1, 1], []],
+    [8, 7, "공깡이다! 커피 먹고 좀 쉬었다 가자", [1, 1, 1, 1], 
+    [
+        { "type": "heal", "monster": 1, "percent": 100 },
+        { "type": "item", "item": 1, "percent": 40 },
+        { "type": "nothing", "percent": 100 }
+    ]
+    , 
+    "아랫공대"],
     [
       9,
       7,
@@ -666,31 +889,46 @@
       [1, 0, 1, 1],
       [
         { "type": "battle", "monster": 1, "percent": 100 },
-        { "type": "item", "item": 1, "percent": 0 }
+        { "type": "item", "item": 1, "percent": 40 },
+        { "type": "nothing", "percent": 100 }
       ],
       "아랫공대"
     ],
-    [0, 8, "여기서 보이는 서울은 어떤 모습일까?", [1, 1, 1, 0], [], "기숙사"],
+    [0, 8, "여기서 보이는 서울은 어떤 모습일까?", [1, 1, 1, 0], 
+    [
+      { "type": "battle", "monster": 1, "percent": 35 },
+        { "type": "item", "item": 1, "percent": 40 },
+        { "type": "nothing", "percent": 100 }
+    ], 
+    "기숙사"],
     [
       1,
       8,
       "헉.. 위쪽으로 올라가는 경사가 장난이 아닌데?",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 50 },
+        { "type": "item", "item": 1, "percent": 90 },
+        { "type": "nothing", "percent": 100 }
       ],
       "기숙사"
     ],
-    [2, 8, "야산이군... 밤이라 그런지 추워...", [0, 1, 1, 1], [], "야산"],
+    [2, 8, "야산이군... 밤이라 그런지 추워...", [0, 1, 1, 1], 
+    [
+        { "type": "battle", "monster": 1, "percent": 80 },
+        { "type": "item", "item": 1, "percent": 90 },
+        { "type": "nothing", "percent": 100 }
+    ], 
+    "야산"],
     [
       3,
       8,
       "여기는 정말 신기한 연구소가 많구나.",
       [0, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 80 },
+        { "type": "item", "item": 1, "percent": 90 },
+        { "type": "nothing", "percent": 100 }
       ],
       "야산"
     ],
@@ -699,7 +937,11 @@
       8,
       "이 시간에 버스를 타고 내려가는 사람들은 윗공대 사람들일까?",
       [0, 1, 1, 1],
-      [],
+      [
+        { "type": "battle", "monster": 1, "percent": 70 },
+        { "type": "item", "item": 1, "percent": 50 },
+        { "type": "nothing", "percent": 100 }
+      ],
       "야산"
     ],
     [
@@ -708,50 +950,72 @@
       "관악02 정류장이다! 빨리 끝내고 집으로 가자!",
       [0, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
-      ]
+        { "type": "battle", "monster": 1, "percent": 60 },
+        { "type": "item", "item": 1, "percent": 60 },
+        { "type": "nothing", "percent": 100 }
+      ],
+      "야산"
     ],
     [
       6,
       8,
       "가도가도 끝이 없는 것 같은데, 기분탓이겠지?",
       [0, 1, 1, 1],
-      [],
+      [
+        { "type": "battle", "monster": 1, "percent": 80 },
+        { "type": "item", "item": 1, "percent": 90 },
+        { "type": "nothing", "percent": 100 }
+      ],
       "아산"
     ],
     [
       7,
       8,
-      "공대 신양에서 밥버거나 먹고 가자!",
+      "공대 신양에서 밥버거랑 커피나 먹고 가자!",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "heal", "heal": 1, "percent": 100 },
+        { "type": "item", "item": 1, "percent": 40 },
+        { "type": "nothing", "percent": 100 }
       ],
       "아랫공대"
     ],
-    [8, 8, "프리미엄 비카다! 지금은 문을 닫아서 갈 수 없어", [0, 1, 1, 1], []],
+    [8, 8, "프리미엄 비카다! 지금은 문을 닫아서 갈 수 없어", [0, 1, 1, 1], 
+    [
+        { "type": "battle", "monster": 1, "percent": 80 },
+        { "type": "item", "item": 1, "percent": 40 },
+        { "type": "nothing", "percent": 100 }
+    ], 
+    "아랫공대"],
     [
       9,
       8,
       "여기가 말로만 듣던 서울대 벙커...? 이렇게 대놓고 지어놓다니!",
       [1, 0, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 20 },
+        { "type": "item", "item": 1, "percent": 90 },
+        { "type": "nothing", "percent": 100 }
       ],
       "야산"
     ],
-    [0, 9, "윗공대다. 과천시라고 나오잖아?", [0, 1, 1, 0], [], "윗공대"],
+    [0, 9, "윗공대다. 과천시라고 나오잖아?", [0, 1, 1, 0], 
+    [
+      { "type": "battle", "monster": 1, "percent": 95 },
+        { "type": "item", "item": 1, "percent": 97 },
+        { "type": "nothing", "percent": 100 }
+    ]
+    , 
+    "윗공대"],
     [
       1,
       9,
       "불길한 기분이 들어... 다신 못나갈 것 같은 기분?",
       [0, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 85 },
+        { "type": "item", "item": 1, "percent": 85 },
+        { "type": "nothing", "percent": 100 }
       ],
       "윗공대"
     ],
@@ -760,7 +1024,12 @@
       9,
       "도대체 건물 번호가 어떻게 된거야? 왜 여기는 또 300번대로 시작하는거지?",
       [1, 1, 1, 1],
-      []
+      [
+        { "type": "battle", "monster": 1, "percent": 60 },
+        { "type": "item", "item": 1, "percent": 60 },
+        { "type": "nothing", "percent": 100 }
+      ],
+      "윗공대"
     ],
     [
       3,
@@ -768,20 +1037,28 @@
       "세상에 온통 체크무늬밖에 없잖아?",
       [0, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 100 },
-        { "type": "item", "item": 1, "percent": 0 }
+        { "type": "battle", "monster": 1, "percent": 90 },
+        { "type": "item", "item": 1, "percent": 95 },
+        { "type": "nothing", "percent": 100 }
       ],
       "윗공대"
     ],
-    [4, 9, "음.... 버스 줄이 끝이 안보여....", [1, 1, 1, 1], [], "윗공대"],
+    [4, 9, "일단 건물로 들어가서 커피 마시면서 생각하자", [1, 1, 1, 1], 
+    [
+        { "type": "heal", "heal": 1, "percent": 100 },
+        { "type": "item", "item": 1, "percent": 50 },
+        { "type": "nothing", "percent": 100 }
+    ], 
+    "윗공대"],
     [
       5,
       9,
       "진: 결국 여기까지 왔구나. 컴공이 무엇인지 보여주지.",
       [0, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "boss", "monster": 1, "percent": 1000 },
+        { "type": "battle", "monster": 1, "percent": 0 },
+        { "type": "nothing", "percent": 0 }
       ],
       "윗공대"
     ],
@@ -790,7 +1067,11 @@
       9,
       "이렇게 연구소가 많다니.. 역시 전화기컴인가...",
       [0, 1, 1, 1],
-      [],
+      [
+        { "type": "battle", "monster": 1, "percent": 80 },
+        { "type": "item", "item": 1, "percent": 85 },
+        { "type": "nothing", "percent": 100 }
+      ],
       "윗공대"
     ],
     [
@@ -799,20 +1080,28 @@
       "후 윗공대에서 무엇을 하라는 것이었을까?",
       [0, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 90 },
+        { "type": "item", "item": 1, "percent": 93 },
+        { "type": "nothing", "percent": 100 }
       ],
       "윗공대"
     ],
-    [8, 9, "머야 왜 과천시에서 알람이 오지?", [0, 1, 1, 1], [], "윗공대"],
+    [8, 9, "머야 왜 과천시에서 알람이 오지?", [0, 1, 1, 1], 
+    [
+        { "type": "battle", "monster": 1, "percent": 70 },
+        { "type": "item", "item": 1, "percent": 80 },
+        { "type": "nothing", "percent": 100 }
+    ], 
+    "윗공대"],
     [
       9,
       9,
       "드디어 윗공대인가? 여긴 정말 다른 도시네!",
       [0, 0, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 70 },
-        { "type": "item", "item": 1, "percent": 30 }
+        { "type": "battle", "monster": 1, "percent": 100 },
+        { "type": "item", "item": 1, "percent": 100 },
+        { "type": "nothing", "percent": 100 }
       ],
       "윗공대"
     ]
