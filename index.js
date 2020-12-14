@@ -80,19 +80,11 @@ app.post('/action', authentication, async (req, res) => {
     let x = req.player.x
     let y = req.player.y
     if (direction === 0) {
-<<<<<<< HEAD
-      y += 1;
-=======
       y += 1
->>>>>>> df8a444331db1f232cfe4f7bc2a64f23b9f78f66
     } else if (direction === 1) {
       x += 1
     } else if (direction === 2) {
-<<<<<<< HEAD
-      y -= 1;
-=======
       y -= 1
->>>>>>> df8a444331db1f232cfe4f7bc2a64f23b9f78f66
     } else if (direction === 3) {
       x -= 1
     } else {
