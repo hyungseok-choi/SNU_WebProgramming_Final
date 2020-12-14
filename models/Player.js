@@ -8,8 +8,8 @@ const schema = new Schema({
   level: { type: Number, default: 1 },
   exp: { type: Number, default: 0 },
   maxExp: { type: Number, default: 100 },
-  maxHP: { type: Number, default: 10 },
-  HP: { type: Number, default: 10 },
+  maxHP: { type: Number, default: 100 },
+  HP: { type: Number, default: 100 },
   str: { type: Number, default: 5 },
   def: { type: Number, default: 5 },
   x: { type: Number, default: 3 },
@@ -31,9 +31,10 @@ const schema = new Schema({
   ],
 })
 
-schema.methods.incrementHP = function (val) {
-  const hp = this.HP + val
-  this.HP = Math.min(Math.max(0, hp), this.maxHP)
+schema.methods.incrementHP = function () {
+  const HParr = [0.1, 0.3, 0.5]
+  const healHP = Math.round(Math.random()*HParr.length)
+  this.HP += this.HP*healHP
 }
 
 schema.methods.addstr = function (val) {

@@ -4,7 +4,7 @@
     "name": "과잠",
     "str": 1,
     "def": 4,
-    "maxHP": 3
+    "maxHP": 20
   },
 
   {
@@ -12,7 +12,7 @@
     "name": "돕바",
     "str": 1,
     "def": 3,
-    "maxHP": 3
+    "maxHP": 15
   },
 
   {
@@ -20,7 +20,7 @@
     "name": "영문판 전공서적",
     "str": 0,
     "def": 1,
-    "maxHP": 2
+    "maxHP": 0
   },
 
   {
@@ -28,7 +28,7 @@
     "name": "한국어판 전공서적",
     "str": 5,
     "def": 5,
-    "maxHP": 4
+    "maxHP": 5
   },
   {
     "id": 6,
@@ -42,21 +42,21 @@
     "name": "학생증",
     "str": 3,
     "def": 3,
-    "maxHP": 2
+    "maxHP": 5
   },
   {
     "id": 8,
-    "name": "갤럭시S20",
+    "name": "갤럭시S20울트라",
     "str": 6,
     "def": 3,
-    "maxHP": 5
+    "maxHP": 10
   },
   {
     "id": 9,
     "name": "명품 지갑",
     "str": 7,
     "def": 7,
-    "maxHP": 7
+    "maxHP": 5
   },
   {
     "id": 10,
@@ -70,13 +70,70 @@
     "name": "노트북",
     "str": 6,
     "def": 3,
-    "maxHP": 6
+    "maxHP": 10
   },
   {
     "id": 12,
     "name": "아이패드",
     "str": 5,
     "def": 3,
-    "maxHP": 8
+    "maxHP": 5
+  },
+  {
+    "id": 13,
+    "name": "전자담배",
+    "str": 5,
+    "def": 5,
+    "maxHP": 5
+  },
+  {
+    "id": 14,
+    "name": "텀블러",
+    "str": 6,
+    "def": 2,
+    "maxHP": 10
+  },
+  {
+    "id": 15,
+    "name": "에코백",
+    "str": 2,
+    "def": 5,
+    "maxHP": 5
+  },
+  {
+    "id": 16,
+    "name": "에어팟",
+    "str": 5,
+    "def": 5,
+    "maxHP": 10
+  },
+  {
+    "id": 17,
+    "name": "누군가의 다이어리",
+    "str": 0,
+    "def": 0,
+    "maxHP": 5
+  },
+  {
+    "id": 18,
+    "name": "벗어놓은 양말",
+    "str": -2,
+    "def": -2,
+    "maxHP": -5
+  },
+  {
+    "id": 19,
+    "name": "머리띠",
+    "str": 1,
+    "def": 1,
+    "maxHP": 5
+  },
+  {
+    "id": 20,
+    "name": "필통",
+    "str": 5,
+    "def": 5,
+    "maxHP": 5
   }
+
 ]
