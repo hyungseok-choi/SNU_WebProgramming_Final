@@ -89,14 +89,6 @@
             bar += "]";
             return bar;
           }
-<<<<<<< HEAD
-          for(let i = 0; i <(1-curr/max)*30; i++){
-            bar += "-";
-          }
-          bar += "]";
-          return bar;
-        }
-
         function minimap(x, y){
           let map = "";
           for(let i = 9; i >= 0; i--){
@@ -121,45 +113,34 @@
         $('#def').text(player.def + "+" + player.defadd);
         const mmap = $('#minimap').text(minimap(player.x, player.y));
         mmap.html(mmap.html().replace(/\n/g,'<br/>'));
-=======
->>>>>>> df8a444331db1f232cfe4f7bc2a64f23b9f78f66
 
-          $("#playerid").text(player.name);
-          $("#lv").text(player.level);
-          $("#exp").text(player.exp);
-          $("#expbar").text(showBar(player.exp, player.maxExp));
-          $("#str").text(player.str + "+" + player.stradd);
-          $("#def").text(player.def + "+" + player.defadd);
+        if (event) {
+          $("#event_result").html(`<p>${event.description}</p>`);
+        } else {
+          $("#event_result").text("아무일도 일어나지 않았다.");
+        }
 
-          if (event) {
-            $("#event_result").html(`<p>${event.description}</p>`);
-          } else {
-            $("#event_result").text("아무일도 일어나지 않았다.");
-          }
+        $("#HP").text(`${player.HP} / ${player.maxHP}+${player.maxHPadd}`);
+        $("#HPbar").text(showBar(player.HP, player.maxHP + player.maxHPadd));
 
-          $("#HP").text(`${player.HP} / ${player.maxHP}+${player.maxHPadd}`);
-          $("#HPbar").text(showBar(player.HP, player.maxHP + player.maxHPadd));
-
-<<<<<<< HEAD
-  </script>
-=======
-          let items = "";
-          for (let i = 0; i < player.items.length; i++) {
-            const item = player.items[i];
-            items +=
-              "\n║" +
-              item.name +
-              " ║ str + " +
-              item.str +
-              " ║ def + " +
-              item.def +
-              " ║ maxHP + " +
-              item.maxHP +
-              " ║\n";
-          }
-          var obj = $("#items").text(items);
-          obj.html(obj.html().replace(/\n/g, "<br/>"));
-        });
+        let items = "";
+        for (let i = 0; i < player.items.length; i++) {
+          const item = player.items[i];
+          items +=
+            "\n║" +
+            item.name +
+            " ║ str + " +
+            item.str +
+            " ║ def + " +
+            item.def +
+            " ║ maxHP + " +
+            item.maxHP +
+            " ║\n";
+        }
+        
+        var obj = $("#items").text(items);
+        obj.html(obj.html().replace(/\n/g, "<br/>"));
+      });
       };
 
       const key = localStorage.getItem("_key");
@@ -169,6 +150,5 @@
 
       sendAction("query");
     </script>
->>>>>>> df8a444331db1f232cfe4f7bc2a64f23b9f78f66
   </body>
 </html>
