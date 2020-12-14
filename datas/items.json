@@ -1,34 +1,82 @@
 [
     {
       "id": 1,
-      "name": "나무목도",
+      "name": "과잠",
       "str": 1,
-      "def": 1,
-      "maxHP": 2
-    },
-  
-    {
-      "id": 2,
-      "name": "나무목검",
-      "str": 2,
-      "def": 1,
+      "def": 4,
       "maxHP": 3
     },
   
     {
-      "id": 1000,
-      "name": "천갑옷",
+      "id": 2,
+      "name": "돕바",
+      "str": 1,
+      "def": 3,
+      "maxHP": 3
+    },
+  
+    {
+      "id": 3,
+      "name": "영문판 전공서적",
       "str": 0,
       "def": 1,
       "maxHP": 2
     },
   
     {
-      "id": 1001,
-      "name": "가죽갑옷",
-      "str": 1,
-      "def": 2,
-      "maxHP": 3
+      "id": 4,
+      "name": "한국어판 전공서적",
+      "str": 5,
+      "def": 5,
+      "maxHP": 4
+    },
+    {
+      "id": 6,
+      "name": "아이폰12PRO MAX",
+      "str": 6,
+      "def": 3,
+      "maxHP": 5
+    },
+    {
+      "id": 7,
+      "name": "학생증",
+      "str": 3,
+      "def": 3,
+      "maxHP": 2
+    },
+    {
+      "id": 8,
+      "name": "갤럭시S20",
+      "str": 6,
+      "def": 3,
+      "maxHP": 5
+    },
+    {
+      "id": 9,
+      "name": "명품 지갑",
+      "str": 7,
+      "def": 7,
+      "maxHP": 7
+    },
+    {
+      "id": 10,
+      "name": "체크카드",
+      "str": 4,
+      "def": 4,
+      "maxHP": 5
+    },
+    {
+      "id": 11,
+      "name": "노트북",
+      "str": 6,
+      "def": 3,
+      "maxHP": 6
+    },
+    {
+      "id": 12,
+      "name": "아이패드",
+      "str": 5,
+      "def": 3,
+      "maxHP": 8
     }
 ]
-  

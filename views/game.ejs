@@ -1,39 +1,37 @@
 <html>
-    <head>
-        <script
-    src="https://code.jquery.com/jquery-3.5.1.min.js"
-    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-    crossorigin="anonymous"></script>
-    </head>
+  <head>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.min.js"
+      integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
   <body>
-    <div style="display: flex; justify-content:space-around">
+    <div style="display: flex; justify-content: space-around">
       <div class="player" style="padding: 20px">
         ══════════ Player ══════════
-        <br/><br/>
-        <div class="user">
-          ID: <span id="playerid"></span>
-        </div>
-        <br/><br/>
+        <br /><br />
+        <div class="user">ID: <span id="playerid"></span></div>
+        <br /><br />
         <div class="plv">
-          LV: <span id ="lv"></span>
-          <br/>
+          LV: <span id="lv"></span>
+          <br />
           EXP: <span id="exp"></span>
-          <br/>
+          <br />
           <span id="expbar"></span>
         </div>
-        <br/><br/>
+        <br /><br />
         <div class="stat">
           STR: <span id="str"></span>
-          <br/>
+          <br />
           DEF: <span id="def"></span>
-          <br/>
+          <br />
           HP: <span id="HP"> HP / maxHP</span>
-          <br/>
+          <br />
           <span id="HPbar"></span>
         </div>
-        <div id="status">
-        </div>
+        <div id="status"></div>
       </div>
       <div class="map" style="padding: 20px">
         ══════════ Map ════════════
@@ -50,44 +48,48 @@
       </div>
       <div class="inventory" style="padding: 20px">
         ════════ Inventory ══════════
-        <div id ="items">
-        </div>
+        <div id="items"></div>
       </div>
-  </div>
+    </div>
 
+    <script>
+      const sendAction = (action, params = {}) => {
+        $.ajax({
+          url: "/action",
+          headers: {
+            Authorization: "Bearer " + key,
+          },
+          method: "POST",
+          data: `action=${action}&direction=${params.direction}`,
+        }).done((req) => {
+          const { player, field, event } = req;
+          $("#game").text(field.description);
+          $("#position").text(`(${field.x},${field.y}) ${field.college}`);
+          const x = field.x;
+          const y = field.y;
+          field.canGo.forEach((canGo, idx) => {
+            const dom = $(`button[value="${idx}"]`);
+            canGo === 0 ? dom.hide() : dom.show();
+            dom.unbind("click");
+            if (canGo === 1) {
+              dom.bind("click", function () {
+                sendAction("move", { direction: idx });
+              });
+            }
+          });
 
-  <script>
-
-const sendAction = (action, params = {}) => {
-      $.ajax({
-        url: "/action",
-        headers: {
-          Authorization: "Bearer " + key
-        },
-        method: "POST",
-        data: `action=${action}&direction=${params.direction}`,
-      }).done((req) => {
-        const { player, field, event } = req;
-        $('#game').text(field.description);
-        $('#position').text(`(${field.x},${field.y})`);
-        const x = field.x;
-        const y = field.y;
-        field.canGo.forEach((canGo, idx) => {
-          const dom = $(`button[value="${idx}"]`);
-          canGo === 0 ? dom.hide() : dom.show();
-          dom.unbind('click');
-          if (canGo === 1) {
-            dom.bind('click', function () {
-              sendAction('move', {direction: idx});
-            });
+          function showBar(curr, max) {
+            let bar = "[";
+            for (let i = 0; i < (curr / max) * 30; i++) {
+              bar += "/";
+            }
+            for (let i = 0; i < (1 - curr / max) * 30; i++) {
+              bar += "-";
+            }
+            bar += "]";
+            return bar;
           }
-        })
-        
-        function showBar(curr, max){
-          let bar = "[";
-          for(let i = 0; i < (curr/max)*30; i++){
-            bar += "/";
-          }
+<<<<<<< HEAD
           for(let i = 0; i <(1-curr/max)*30; i++){
             bar += "-";
           }
@@ -119,35 +121,54 @@ const sendAction = (action, params = {}) => {
         $('#def').text(player.def + "+" + player.defadd);
         const mmap = $('#minimap').text(minimap(player.x, player.y));
         mmap.html(mmap.html().replace(/\n/g,'<br/>'));
+=======
+>>>>>>> df8a444331db1f232cfe4f7bc2a64f23b9f78f66
 
-        if (event) {
-          $('#event_result').text(event.description);
-        } else {
-          $('#event_result').text("아무일도 일어나지 않았다.");
-        }
+          $("#playerid").text(player.name);
+          $("#lv").text(player.level);
+          $("#exp").text(player.exp);
+          $("#expbar").text(showBar(player.exp, player.maxExp));
+          $("#str").text(player.str + "+" + player.stradd);
+          $("#def").text(player.def + "+" + player.defadd);
 
-        $('#HP').text(`${player.HP} / ${player.maxHP}+${player.maxHPadd}`);
-        $('#HPbar').text(showBar(player.HP, player.maxHP+player.maxHPadd));
-        
-        let items = ""
-        for(let i = 0; i <player.items.length; i++){
-          const item = player.items[i];
-          items += "\n║" + item.name + " ║ str + "+ item.str +" ║ def + "+ item.def +" ║ maxHP + "+ item.maxHP +" ║\n"
-        }
-        var obj = $('#items').text(items);
-        obj.html(obj.html().replace(/\n/g,'<br/>'));
-      });
-    }
-    
-  
-    const key = localStorage.getItem('_key');
-    if (!key) {
-      location.href = "/";
-    }
+          if (event) {
+            $("#event_result").html(`<p>${event.description}</p>`);
+          } else {
+            $("#event_result").text("아무일도 일어나지 않았다.");
+          }
 
-    sendAction("query");
+          $("#HP").text(`${player.HP} / ${player.maxHP}+${player.maxHPadd}`);
+          $("#HPbar").text(showBar(player.HP, player.maxHP + player.maxHPadd));
 
+<<<<<<< HEAD
   </script>
+=======
+          let items = "";
+          for (let i = 0; i < player.items.length; i++) {
+            const item = player.items[i];
+            items +=
+              "\n║" +
+              item.name +
+              " ║ str + " +
+              item.str +
+              " ║ def + " +
+              item.def +
+              " ║ maxHP + " +
+              item.maxHP +
+              " ║\n";
+          }
+          var obj = $("#items").text(items);
+          obj.html(obj.html().replace(/\n/g, "<br/>"));
+        });
+      };
+
+      const key = localStorage.getItem("_key");
+      if (!key) {
+        location.href = "/";
+      }
+
+      sendAction("query");
+    </script>
+>>>>>>> df8a444331db1f232cfe4f7bc2a64f23b9f78f66
   </body>
 </html>
-
