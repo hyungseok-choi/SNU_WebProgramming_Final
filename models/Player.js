@@ -75,16 +75,16 @@ schema.methods.playerInit = function () {
 }
 
 schema.methods.playerExpUP = function () {
-  //this.exp += 50
+  this.exp = Math.round(50*Math.pow(1.3,this.level-1))
 }
 
 schema.methods.playerLvUP = function () {
   if (this.exp >= this.maxExp) {
-    this.maxHP += this.maxHP * 1.5
+    this.maxHP = this.maxHP + (this.level-1)*10
     this.HP = this.maxHP
     this.level += 1
     this.exp -= this.maxExp
-    this.maxExp = Number(this.maxExp * 1.5)
+    this.maxExp = Math.round((this.maxExp * 1.5))
   }
 }
 
