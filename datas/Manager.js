@@ -70,30 +70,27 @@ class MonsterManager extends Manager {
 class BossManager extends Manager {
   constructor(datas) {
     super()
-    this.monsters = {}
+    this.boss = {}
 
-    datas.forEach((monster) => {
-      this.monsters[`${monster.id}`] = {
-        name: monster['name'],
-        str: monster['str'],
-        def: monster['def'],
-        hp: monster['hp'],
-        middleName: monster['middleName'],
+    datas.forEach((boss) => {
+      this.boss[`${boss.id}`] = {
+        name: boss['name'],
+        str: boss['str'],
+        def: boss['def'],
+        hp: boss['hp'],
+        middleName: boss['middleName'],
       }
     })
   }
 
-  meetRandMonster() {
-    const cloneMonster = (obj) => JSON.parse(JSON.stringify(obj))
-    const keys = Object.keys(this.monsters)
-    const num = keys.length
-    const randomNumber = Math.floor(Math.random() * num)
-    const randomMonster = cloneMonster(this.monsters[keys[randomNumber]])
+  meetBoss() {
+    const cloneBoss = (obj) => JSON.parse(JSON.stringify(obj))
+    const boss = cloneBoss(this.boss[keys[0]])
     const middleName =
-      randomMonster.middleName[
-        Math.floor(Math.random() * randomMonster.middleName.length)
+      boss.middleName[
+        Math.floor(Math.random() * boss.middleName.length)
       ]
-    return [randomMonster, middleName]
+    return [boss, middleName]
   }
 }
 
