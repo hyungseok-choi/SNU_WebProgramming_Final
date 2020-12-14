@@ -21,7 +21,11 @@
     "express": "^4.17.1",
     "express-validator": "^6.8.0",
     "mongoose": "^5.11.5"
+  },
+  "devDependencies": {
+    "eslint": "^7.15.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^7.0.0",
+    "prettier": "2.2.1"
   }
-
 }
-
