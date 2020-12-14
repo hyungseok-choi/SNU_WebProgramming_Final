@@ -94,8 +94,6 @@ app.post('/action', authentication, async (req, res) => {
     let _event = {}
 
     if (events.length > 0) {
-      // TODO : 확률별로 이벤트 발생하도록 변경
-      // 한 Field에 있는 event 개수는 최대 2개라고 가정
       let probability = Math.random()
       if (probability * 100 < parseInt(events[0].percent)) {
         _event = events[0]
@@ -105,7 +103,7 @@ app.post('/action', authentication, async (req, res) => {
         _event = {"type": "nothing"}
       }
       if (_event.type === 'battle') {
-        // TODO: 이벤트 별로 events.json 에서 불러와 이벤트 처리
+
 
         // 몬스터 선택
         const [randomMonster, middleName] = monsterManager.meetRandMonster()
@@ -180,7 +178,7 @@ app.post('/action', authentication, async (req, res) => {
         } else {
           const item = itemManager.getRandItem()
           event = {
-            description: `땅에서 반짝이는 ${item.name}을 발견했다.`,
+            description: `지나가다가 ${item.name}을 발견했다.`,
           }
           player.addstr(item.str)
           player.adddef(item.def)
@@ -195,7 +193,8 @@ app.post('/action', authentication, async (req, res) => {
         }
       } else if (_event.type === 'boss')
       {
-        //일반 전투랑 똑같은데 이름만 boss로 바꿔주세용
+        //일반 전투랑 똑같은데 이름만 randommonster를 boss로 바꿔주세용
+
       } else {
         event = {
           description: `아무일도 일어나지 않았다`,
