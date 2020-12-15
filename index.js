@@ -158,12 +158,12 @@ app.post('/action', authentication, async (req, res) => {
         let [randomMonster, middleName] = monsterManager.meetRandMonster();
         let monsterStr = randomMonster.str + (player.level - 1) * 5;
         let monsterDef = randomMonster.def + player.level * 3;
-        let monsterHP = randomMonster.hp + player.level * 30;
+        let monsterHP = randomMonster.hp + player.level * 15;
         if (_event.type === 'boss') {
           [randomMonster, middleName] = bossManager.meetBoss();
           monsterStr = randomMonster.str + (player.level - 1) * 5;
           monsterDef = randomMonster.def + player.level * 3;
-          monsterHP = randomMonster.hp + player.level * 30;
+          monsterHP = randomMonster.hp + player.level * 15;
         }
         const playerStr = player.str + player.stradd;
         const playerDef = player.def + player.defadd;
