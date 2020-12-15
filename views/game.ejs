@@ -166,15 +166,17 @@
           for (let i = 0; i < player.items.length; i++) {
             const item = player.items[i];
             const str = (item.str > 0) ? "+" + item.str : item.str;
+            const def = (item.def > 0) ? "+" + item.def : item.def;
+            const maxHP = (item.maxHP > 0) ? "+" + item.maxHP: item.maxHP;
             items +=
               '\n║' +
               item.name +
               ' ║ str ' +
-              item.str +
+              str +
               ' ║ def ' +
-              item.def +
+              def +
               ' ║ maxHP ' +
-              item.maxHP +
+              maxHP +
               ' ║\n';
           }
 
