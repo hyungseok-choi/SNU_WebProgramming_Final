@@ -156,14 +156,14 @@ app.post('/action', authentication, async (req, res) => {
       if (_event.type === 'battle' || _event.type === 'boss') {
         // 몬스터 선택
         let [randomMonster, middleName] = monsterManager.meetRandMonster();
-        let monsterStr = randomMonster.str + player.level * 5;
-        let monsterDef = randomMonster.def + player.level * 3;
-        let monsterHP = randomMonster.hp + player.level * 30;
+        let monsterStr = randomMonster.str + (player.level-1) * 4;
+        let monsterDef = randomMonster.def + (player.level-1) * 3;
+        let monsterHP = randomMonster.hp + (player.level-1) * 30;
         if (_event.type === 'boss') {
           [randomMonster, middleName] = bossManager.meetBoss();
-          monsterStr = randomMonster.str + player.level * 5;
-          monsterDef = randomMonster.def + player.level * 3;
-          monsterHP = randomMonster.hp + player.level * 30;
+          monsterStr = randomMonster.str + (player.level-1) * 5;
+          monsterDef = randomMonster.def + (player.level-1) * 3;
+          monsterHP = randomMonster.hp + (player.level-1) * 30;
         }
         const playerStr = player.str + player.stradd;
         const playerDef = player.def + player.defadd;
