@@ -58,7 +58,11 @@
         $.post(action, $(this).serialize(), (res) => {
           if (res.key) {
             localStorage.setItem("_key", res.key);
-            location.href = "/stat";
+            if(action == "/signin"){
+              location.href = "/game";
+            }else{
+              location.href = "/stat";
+            }
           } else {
             alert(res);
           }
