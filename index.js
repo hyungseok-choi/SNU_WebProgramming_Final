@@ -185,6 +185,8 @@ app.post('/action', authentication, async (req, res) => {
             description += `${middleName} ${randomMonster.name}의 체력이 0입니다.<br>`
             description += `${middleName} ${randomMonster.name}를 쫓아냈다.<br>`
             console.log(`${middleName} ${randomMonster.name}를 쫓아냈다.`)
+            await player.playerExpUP()
+            await player.playerLvUP()
             break
           }
         }
@@ -210,18 +212,20 @@ app.post('/action', authentication, async (req, res) => {
         }
         if (player.playerDie() === 1) {
           description += `${middleName} ${randomMonster.name}의 공격으로 사망했습니다.<br>`
-          console.log(event)
           description += `${randomMonster.name}은 너무 강력하다. 처음 위치로 돌아갑니다.<br>`
-          console.log(event)
           await player.playerInit()
         }
         event = { description }
 
         description += '--------전투종료---------<br>'
       } else if (_event.type === 'heal') {
-        player.incrementHP()
-        const healed = player.incrementHP()
-        event = { description: `커피를 마셔서 ${healed}만큼 회복했다.` }
+        let healed = player.incrementHP()
+        if (player.maxHP+player.maxHPadd === player.HP ) {
+          event = { description: `더이상 커피를 먹으면 카페인 중독이 될지도?` }
+        } else if (healed > player.maxHP+player.maxHPadd-player.HP) {
+          healed = player.maxHP+player.maxHPadd-player.HP
+          event = { description: `커피를 마셔서 ${healed}만큼 회복했다.` }
+        } else {event = { description: `커피를 마셔서 ${healed}만큼 회복했다.` }}
       } else if (_event.type === 'item') {
         if (player.items.length > 10) {
           // Inventory의 개수는 10개로 한정한다 .

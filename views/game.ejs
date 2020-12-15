@@ -108,10 +108,10 @@
                 
         $('#playerid').text(player.name);
         $('#lv').text(player.level);
-        $('#exp').text(player.exp);
+        $('#exp').text(`${player.exp} / ${player.maxExp}`);
         $('#expbar').text(showBar(player.exp, player.maxExp));
-        $('#str').text(player.str + "+" + player.stradd);
-        $('#def').text(player.def + "+" + player.defadd);
+        $('#str').text(player.str + player.stradd);
+        $('#def').text(player.def + player.defadd);
         const mmap = $('#minimap').text(minimap(player.x, player.y));
         mmap.html(mmap.html().replace(/\n/g,'<br/>'));
 
@@ -121,7 +121,7 @@
           $("#event_result").text("아무일도 일어나지 않았다.");
         }
 
-        $("#HP").text(`${player.HP} / ${player.maxHP}+${player.maxHPadd}`);
+        $("#HP").text(`${player.HP} / ${player.maxHP + player.maxHPadd}`);
         $("#HPbar").text(showBar(player.HP, player.maxHP + player.maxHPadd));
 
         let items = "";
