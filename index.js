@@ -1,5 +1,4 @@
 const express = require('express')
-const fs = require('fs')
 const mongoose = require('mongoose')
 const crypto = require('crypto')
 
@@ -59,6 +58,29 @@ app.post('/signup', async (req, res) => {
   await player.save()
 
   return res.send({ key })
+})
+
+app.get('/stat', (req, res) => {
+  res.render('stat')
+})
+
+app.post('/stat', authentication, async (req, res) => {
+  const player = req.player
+  if(player.statCount >= 5){
+    return res.send({player});
+  }
+  
+  const str = Math.round(Math.random()*3) + 3;
+  const def = 8- str;
+  const hp = Math.round(Math.random()*40) +80;
+
+  player.str = str;
+  player.def = def;
+  player.maxHP = player.HP = hp;
+  player.addCount();
+  await player.save();
+  
+  return res.send({player})
 })
 
 app.post('/action', authentication, async (req, res) => {
