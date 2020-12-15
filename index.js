@@ -44,8 +44,11 @@ app.get('/game', (req, res) => {
 
 app.post('/signup', async (req, res) => {
   const { name, password } = req.body;
+  if(name === "고블린"){
+    return res.send('수업중 사라진 고블린에게 조의를 표하자');
+  }
   if (await Player.exists({ name })) {
-    return res.send('플레이어가 이미 존재합니다!');
+    return res.send(name + '은 이미 웹프 드랍한 학생입니다...');
   }
 
   encryptedpw = crypto.createHash('sha512').update(password).digest('base64');
