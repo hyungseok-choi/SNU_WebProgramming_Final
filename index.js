@@ -170,8 +170,8 @@ app.post('/action', authentication, async (req, res) => {
         let description = `${middleName} ${randomMonster.name}이(가) 인사를 건네온다.<br>`;
         description += `(STR: ${monsterStr}, DEF: ${monsterDef}, HP : ${monsterHP})<br>`;
         // 사람 선공
-        let round = 0;
-        for (round = 0; round <= 10; round++) {
+        let round;
+        for (round = 1; round <= 10; round++) {
           description += `=======ROUND ${round}=======<br>`;
           let attackDamage = playerStr - monsterDef;
           if (attackDamage <= 0) {
@@ -197,6 +197,7 @@ app.post('/action', authentication, async (req, res) => {
             }
             description += `나(HP: ${player.HP}) <--공격${damage}--- ${randomMonster.name}(HP: ${monsterHP})<br>`;
             if (player.HP <= (player.maxHP + player.maxHPadd) * 0.2) {
+              round++;
               break;
             }
           }
@@ -207,7 +208,7 @@ app.post('/action', authentication, async (req, res) => {
             description += `${exp} exp를 획득했다!<br>`;
             const isLvUP = await player.playerLvUP();
             if (isLvUP) {
-              description += '레벨이 올랐다!';
+              description += '레벨이 올랐다!<br>기본 STR, DEF, HP 증가!<br>';
             }
             break;
           }
@@ -216,18 +217,21 @@ app.post('/action', authentication, async (req, res) => {
           if (player.HP === 0) {
             description += '--------전투종료---------<br>';
             const itemLoss = await player.playerInit();
-          description += `${middleName} ${monsterName}의 공격으로 사망했습니다.<br>`;
-          description += `${itemLoss}를 ${monsterName}에게 뺐겼다...<br>`;
-          description += `학교 정문으로 돌아갑니다.<br>`;
-          field = mapManager.getField(9, 0);
-          }
-          if (player.HP <= (player.maxHP + player.maxHPadd) * 0.2) {
-            description += '나의 체력이 20% 이하이다. ';
+            description += `${middleName} ${randomMonster.name}의 공격으로 사망했습니다.<br>`;
+            if (itemLoss.length) {
+              description += `${itemLoss[0].name}를 ${randomMonster.name}에게 뺐겼다...<br>`;
+            }
+            description += `학교 정문으로 돌아갑니다.<br>`;
+            field = mapManager.getField(9, 0);
           } else {
-            description += '10턴이 지났다. ';
+            if (player.HP <= (player.maxHP + player.maxHPadd) * 0.2) {
+              description += '나의 체력이 20% 이하이다. ';
+            } else {
+              description += '10턴이 지났다. ';
+            }
+            description += `도망을 가야할까?`;
+            run = 1;
           }
-          description += `도망을 가야할까?`;
-          run = 1;
         }
         event = {
           description,
@@ -307,7 +311,7 @@ app.post('/action', authentication, async (req, res) => {
       let round = req.body.round;
 
       while (round) {
-        description += `=======ROUND ${round}=======<br>`;
+        description += `=======ROUND ${parseInt(round)}=======<br>`;
         round++;
         let attackDamage = playerStr - monsterDef;
         if (attackDamage <= 0) {
