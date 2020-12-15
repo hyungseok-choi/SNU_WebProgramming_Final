@@ -110,7 +110,7 @@ class ItemManager extends Manager {
   getItem(name) {
     const keys = Object.keys(this.items);
     const num = keys.length;
-    for (i = 0; i < num; i++) {
+    for (let i = 0; i < num; i++) {
       if (this.items[keys[i]].name === name) {
         return this.items[keys[i]];
       }
