@@ -344,8 +344,12 @@ app.post('/action', authentication, async (req, res) => {
         if (monsterHP <= 0) {
           description += '--------전투종료---------<br>';
           description += `${middleName} ${monsterName}을(를) 쫓아냈다.<br>`;
-          await player.playerExpUP();
-          await player.playerLvUP();
+          const exp = await player.playerExpUP();
+          description += `${exp} exp를 획득했다!<br>`;
+          const isLvUP = await player.playerLvUP();
+          if (isLvUP) {
+            description += '레벨이 올랐다!<br>기본 STR, DEF, HP 증가!<br>';
+          }
           break;
         }
       }
