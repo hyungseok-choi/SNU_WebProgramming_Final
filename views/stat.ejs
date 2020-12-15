@@ -1,82 +1,93 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MUDGAME</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>윗공대 혼내주기</title>
     <script
-    src="https://code.jquery.com/jquery-3.5.1.min.js"
-    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-    crossorigin="anonymous"
-  ></script>
-</head>
-<body>
-  <div class="show_container" style="display: flex; justify-content: center; align-items: center; height: -webkit-fill-available;">
-    <div class="show_stat" style="flex-direction: column; padding: 50px; border: 4px dashed #bcbcbc;">
-      <div><h2 id="id"></h2></div>
-      <div>str: <span id="str">3</span></div>
-      <div>def: <span id="def">2</span></div>
-      <div>maxHP: <span id="maxHP">0</span></div>
-      <div>능력 재설정 가능 횟수: <strong id="resetCount">5</strong></div>
-      <div class="bts" style="padding-top: 30px;">
-        <button id="reset">능력 재설정!</button>
-        <button id="confirm">이 능력치로 결정</button>
+      src="https://code.jquery.com/jquery-3.5.1.min.js"
+      integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div
+      class="show_container"
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: -webkit-fill-available;
+      "
+    >
+      <div
+        class="show_stat"
+        style="
+          flex-direction: column;
+          padding: 50px;
+          border: 4px dashed #bcbcbc;
+        "
+      >
+        <div><h2 id="id"></h2></div>
+        <div>str: <span id="str">3</span></div>
+        <div>def: <span id="def">2</span></div>
+        <div>maxHP: <span id="maxHP">0</span></div>
+        <div>능력 재설정 가능 횟수: <strong id="resetCount">5</strong></div>
+        <div class="bts" style="padding-top: 30px">
+          <button id="reset">능력 재설정!</button>
+          <button id="confirm">이 능력치로 결정</button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <script>
-    // /stat으로 POST AJAX요청해서 랜덤값 받아오게하고, 결정!버튼 누르면 폼 제출되도록.
-    function getData() {
+    <script>
+      // /stat으로 POST AJAX요청해서 랜덤값 받아오게하고, 결정!버튼 누르면 폼 제출되도록.
+      function getData() {
         $.ajax({
-            url: "/stat",
-            headers: {
-              Authorization: "Bearer " + key,
-            },
-            method: "POST"
-          }).done((req) => {
-            const {player} = req;
-            if(player.statFix === true){
-              window.location.replace('/game');
-            }
-            $('#id').text(player.name);
-            $('#str').text(player.str);
-            $('#def').text(player.def);
-            $('#maxHP').text(player.maxHP);
-            $('#resetCount').text(`${player.statCount}`);
-          });
-    }
-
-    const key = localStorage.getItem("_key");
-      if (!key) {
-        location.href = "/";
-      }
-    
-    getData();
-
-    $('#reset').click(() => {
-      const num = $('#resetCount').text();
-      if(num <= 0){
-        alert("더 이상 초기화를 할 수 없습니다!")
-      } else{
-        getData();
-      }
-    });
-
-    $('#confirm').click(() => {
-      $.ajax({
-            url: "/statfix",
-            headers: {
-              Authorization: "Bearer " + key,
-            },
-            method: "POST"
-          }).done((req) => {
+          url: '/stat',
+          headers: {
+            Authorization: 'Bearer ' + key,
+          },
+          method: 'POST',
+        }).done((req) => {
+          const { player } = req;
+          if (player.statFix === true) {
             window.location.replace('/game');
-          });
-    })
-    
-    
-    
+          }
+          $('#id').text(player.name);
+          $('#str').text(player.str);
+          $('#def').text(player.def);
+          $('#maxHP').text(player.maxHP);
+          $('#resetCount').text(`${player.statCount}`);
+        });
+      }
 
-  </script>
-</body>
+      const key = localStorage.getItem('_key');
+      if (!key) {
+        location.href = '/';
+      }
+
+      getData();
+
+      $('#reset').click(() => {
+        const num = $('#resetCount').text();
+        if (num <= 0) {
+          alert('더 이상 초기화를 할 수 없습니다!');
+        } else {
+          getData();
+        }
+      });
+
+      $('#confirm').click(() => {
+        $.ajax({
+          url: '/statfix',
+          headers: {
+            Authorization: 'Bearer ' + key,
+          },
+          method: 'POST',
+        }).done((req) => {
+          window.location.replace('/game');
+        });
+      });
+    </script>
+  </body>
 </html>
