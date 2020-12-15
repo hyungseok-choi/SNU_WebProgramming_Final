@@ -43,6 +43,7 @@ schema.methods.incrementHP = function () {
   }
   this.HP += healHP;
   if (this.HP > this.maxHP + this.maxHPadd) {
+    healHP -= this.HP - (this.maxHP + this.maxHPadd);
     this.HP = this.maxHP + this.maxHPadd;
   }
   return healHP;
