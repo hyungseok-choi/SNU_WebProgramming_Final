@@ -165,14 +165,15 @@
           let items = '';
           for (let i = 0; i < player.items.length; i++) {
             const item = player.items[i];
+            const str = (item.str > 0) ? "+" + item.str : item.str;
             items +=
               '\n║' +
               item.name +
-              ' ║ str + ' +
+              ' ║ str ' +
               item.str +
-              ' ║ def + ' +
+              ' ║ def ' +
               item.def +
-              ' ║ maxHP + ' +
+              ' ║ maxHP ' +
               item.maxHP +
               ' ║\n';
           }
