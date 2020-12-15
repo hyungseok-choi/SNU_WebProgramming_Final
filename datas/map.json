@@ -102,7 +102,7 @@
       "정문이다. 버스를 탈 수는 없겠지?",
       [1, 0, 0, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 40 },
+        { "type": "battle", "monster": 1, "percent": 30 },
         { "type": "item", "item": 1, "percent": 80 },
         { "type": "nothing", "percent": 100 }
       ],
