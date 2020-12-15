@@ -140,11 +140,13 @@
           $('#lv').text(player.level);
           $('#exp').text(`${player.exp} / ${player.maxExp}`);
           $('#expbar').text(showBar(player.exp, player.maxExp));
+          const stradd = (player.stradd >= 0) ? "+" + player.stradd : player.stradd;
           $('#str').text(
-            `${player.str + player.stradd}(${player.str + '+' + player.stradd})`
+            `${player.str + player.stradd}(${player.str + " " + stradd})`
           );
+          const defadd = (player.defadd >= 0) ? "+" + player.defadd : player.defadd;
           $('#def').text(
-            `${player.def + player.defadd}(${player.def + '+' + player.defadd})`
+            `${player.def + player.defadd}(${player.def + " " + defadd})`
           );
           const mmap = $('#minimap').text(minimap(player.x, player.y));
           mmap.html(mmap.html().replace(/\n/g, '<br/>'));
@@ -165,9 +167,9 @@
           let items = '';
           for (let i = 0; i < player.items.length; i++) {
             const item = player.items[i];
-            const str = (item.str > 0) ? "+" + item.str : item.str;
-            const def = (item.def > 0) ? "+" + item.def : item.def;
-            const maxHP = (item.maxHP > 0) ? "+" + item.maxHP: item.maxHP;
+            const str = (item.str >= 0) ? "+" + item.str : item.str;
+            const def = (item.def >= 0) ? "+" + item.def : item.def;
+            const maxHP = (item.maxHP >= 0) ? "+" + item.maxHP: item.maxHP;
             items +=
               '\n║' +
               item.name +
