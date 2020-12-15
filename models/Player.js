@@ -3,6 +3,7 @@ const Schema = mongoose.Schema
 
 const schema = new Schema({
   name: String,
+  password: String,
   key: String,
 
   level: { type: Number, default: 1 },
@@ -17,7 +18,8 @@ const schema = new Schema({
   stradd: { type: Number, default: 0 },
   defadd: { type: Number, default: 0 },
   maxHPadd: { type: Number, default: 0 },
-  statCount: { type: Number, default: 1 },
+  statCount: { type: Number, default: 6 },
+  statFix: {type: Boolean, default:false},
   items: [
     {
       name: String,
@@ -96,8 +98,12 @@ schema.methods.playerLvUP = function () {
   }
 }
 
-schema.methods.addCount = function () {
-  this.statCount += 1;
+schema.methods.subCount = function () {
+  this.statCount -= 1;
+}
+
+schema.methods.statfix = function () {
+  this.statFix = true;
 }
 
 const Player = mongoose.model('Player', schema)

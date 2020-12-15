@@ -8,31 +8,63 @@
     ></script>
   </head>
   <body>
-    <%= gameName %>에 온 걸 환영합니다. 당신의 이름은?
-    <div class=""></div>
-
-    <form id="form" action="/signup">
-      이름: <input name="name" />
-      <input type="submit" value="확인" />
-    </form>
-
+    <div class="container" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: -webkit-fill-available;">
+      <div style="flex-direction: column; padding: 50px; border: 4px dashed #bcbcbc;">
+        <div class="gamename" style="font-size: 30px">
+          <%= gameName %>에 온 걸 환영합니다. 당신의 이름은?
+        </div>
+        <br/>
+        <div class="inputbox">
+          <form class="form" action="/signin" style="display: flex; justify-content: center; align-items: center";>
+            <div>
+              <div>
+              이름: <input name="name" required/>
+              </div>
+              <div style="margin-right: 30px">
+              비밀번호: <input name="password" type="password" required/>
+              </div>
+            </div>
+            <input type="submit" value="게임시작" style="padding: 10px"/>
+          </form>
+        </div>
+      </div>
+      <div style="flex-direction: column; padding: 30px; margin-top: 50px">
+        <div class="signup" style="font-size: 30px">
+          회원가입
+        </div>
+        <div class="inputbox">
+          <form class="form" action="/signin" style="display: flex; justify-content: center; align-items: center";>
+            <div>
+              <div>
+              이름: <input name="name" required/>
+              </div>
+              <div style="margin-right: 30px">
+              비밀번호: <input name="password" type="password" required/>
+              </div>
+            </div>
+            <input type="submit" value="가입하고 게임시작" style="padding: 10px"/>
+          </form>
+        </div>
+      </div>
+    </div>
     <script>
       const key = localStorage.getItem("_key");
       if (key) {
         location.href = "/game";
       }
-      $("#form").submit(function (e) {
+      $(".form").submit(function (e) {
         e.preventDefault();
         const action = $(this).attr("action");
         $.post(action, $(this).serialize(), (res) => {
           if (res.key) {
             localStorage.setItem("_key", res.key);
-            location.href = "/game";
+            location.href = "/stat";
           } else {
-            alert("에러가 발생했습니다. 다시 시도해주세요.");
+            alert(res);
           }
         });
       });
+
     </script>
   </body>
 </html>
