@@ -156,12 +156,12 @@ app.post('/action', authentication, async (req, res) => {
       if (_event.type === 'battle' || _event.type === 'boss') {
         // 몬스터 선택
         let [randomMonster, middleName] = monsterManager.meetRandMonster();
-        let monsterStr = randomMonster.str + (player.level-1) * 5;
+        let monsterStr = randomMonster.str + (player.level - 1) * 5;
         let monsterDef = randomMonster.def + player.level * 3;
         let monsterHP = randomMonster.hp + player.level * 30;
         if (_event.type === 'boss') {
           [randomMonster, middleName] = bossManager.meetBoss();
-          monsterStr = randomMonster.str + (player.level-1) * 5;
+          monsterStr = randomMonster.str + (player.level - 1) * 5;
           monsterDef = randomMonster.def + player.level * 3;
           monsterHP = randomMonster.hp + player.level * 30;
         }
@@ -243,14 +243,17 @@ app.post('/action', authentication, async (req, res) => {
           round,
         };
       } else if (_event.type === 'heal') {
-        let healed = player.incrementHP();
-        if (player.maxHP + player.maxHPadd === player.HP) {
-          event = { description: `더이상 커피를 먹으면 카페인 중독이 될지도?` };
-        } else if (healed > player.maxHP + player.maxHPadd - player.HP) {
-          healed = player.maxHP + player.maxHPadd - player.HP;
-          event = { description: `커피를 마셔서 ${healed}만큼 회복했다.` };
+        const healed = player.incrementHP();
+        if (healed == 0) {
+          event = {
+            description: `HP가 충분하다! 더이상 커피를 먹으면 카페인 중독이 될지도?`,
+          };
         } else {
-          event = { description: `커피를 마셔서 ${healed}만큼 회복했다.` };
+          description = `커피를 마셔서 ${healed}만큼 회복했다.<br>`;
+          if (player.maxHP + player.maxHPadd === player.HP) {
+            description += `더이상 커피를 먹으면 카페인 중독이 될지도?`;
+          }
+          event = { description };
         }
       } else if (_event.type === 'item') {
         if (player.items.length > 14) {
