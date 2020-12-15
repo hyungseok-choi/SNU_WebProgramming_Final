@@ -101,7 +101,7 @@ schema.methods.playerExpUP = function () {
 
 schema.methods.playerLvUP = function () {
   if (this.exp >= this.maxExp) {
-    this.maxHP = this.maxHP + (this.level - 1) * 10;
+    this.maxHP = this.maxHP + (this.level - 1) * 20;
     this.HP = this.maxHP + this.maxHPadd;
     this.level += 1;
     this.exp -= this.maxExp;
