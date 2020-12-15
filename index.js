@@ -136,7 +136,7 @@ app.post('/action', authentication, async (req, res) => {
     } else {
       res.sendStatus(400);
     }
-    const field = mapManager.getField(x, y);
+    let field = mapManager.getField(x, y);
     if (!field) res.sendStatus(400);
     player.x = x;
     player.y = y;
@@ -158,12 +158,12 @@ app.post('/action', authentication, async (req, res) => {
         let [randomMonster, middleName] = monsterManager.meetRandMonster();
         let monsterStr = randomMonster.str + player.level * 5;
         let monsterDef = randomMonster.def + player.level * 3;
-        let monsterHP = randomMonster.hp + player.level * 10;
+        let monsterHP = randomMonster.hp + player.level * 30;
         if (_event.type === 'boss') {
           [randomMonster, middleName] = bossManager.meetBoss();
           monsterStr = randomMonster.str + player.level * 5;
           monsterDef = randomMonster.def + player.level * 3;
-          monsterHP = randomMonster.hp + player.level * 10;
+          monsterHP = randomMonster.hp + player.level * 30;
         }
         const playerStr = player.str + player.stradd;
         const playerDef = player.def + player.defadd;
@@ -215,10 +215,11 @@ app.post('/action', authentication, async (req, res) => {
         if (monsterHP > 0) {
           if (player.HP === 0) {
             description += '--------전투종료---------<br>';
-            description += `${middleName} ${randomMonster.name}의 공격으로 사망했습니다.<br>`;
-            description += `처음 위치로 돌아갑니다.<br>`;
-            await player.playerInit();
-            field = mapManager.getField(9, 0);
+            const itemLoss = await player.playerInit();
+          description += `${middleName} ${monsterName}의 공격으로 사망했습니다.<br>`;
+          description += `${itemLoss}를 ${monsterName}에게 뺐겼다...<br>`;
+          description += `학교 정문으로 돌아갑니다.<br>`;
+          field = mapManager.getField(9, 0);
           }
           if (player.HP <= (player.maxHP + player.maxHPadd) * 0.2) {
             description += '나의 체력이 20% 이하이다. ';
@@ -263,7 +264,7 @@ app.post('/action', authentication, async (req, res) => {
             event = { description: `${item.name}..? 이미 가지고 있다 ` };
           } else {
             event = {
-              description: `지나가다가 ${item.name}을 발견했다.`,
+              description: `지나가다가 ${item.name}을(를) 주웠다.`,
             };
             player.addstr(item.str);
             player.adddef(item.def);
@@ -346,9 +347,12 @@ app.post('/action', authentication, async (req, res) => {
       }
       if (monsterHP > 0) {
         if (player.HP === 0) {
+          const itemLoss = await player.playerInit();
           description += `${middleName} ${monsterName}의 공격으로 사망했습니다.<br>`;
-          description += `처음 위치로 돌아갑니다.<br>`;
-          await player.playerInit();
+          if (itemLoss.length) {
+            description += `${itemLoss[0].name}를 ${monsterName}에게 뺐겼다...<br>`;
+          }
+          description += `학교 정문으로 돌아갑니다.<br>`;
           field = mapManager.getField(9, 0);
         }
       }
