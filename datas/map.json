@@ -102,7 +102,7 @@
       "정문이다. 버스를 탈 수는 없겠지?",
       [1, 0, 0, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 40 },
+        { "type": "battle", "monster": 1, "percent": 30 },
         { "type": "item", "item": 1, "percent": 80 },
         { "type": "nothing", "percent": 100 }
       ],
@@ -608,7 +608,7 @@
       3,
       5,
       "교양 수업을 들었던 곳이다. 재밋었는데...!",
-      [1, 1, 1, 1],
+      [0, 1, 1, 1],
       [
         { "type": "battle", "monster": 1, "percent": 30 },
         { "type": "item", "item": 1, "percent": 40 },
@@ -620,7 +620,7 @@
       4,
       5,
       "대국...과기글....글기... 요즘 애들은 알려나?",
-      [1, 1, 1, 1],
+      [0, 1, 1, 1],
       [
         { "type": "battle", "monster": 1, "percent": 25 },
         { "type": "item", "item": 1, "percent": 60 },
@@ -632,7 +632,7 @@
       5,
       5,
       "행정관은 무슨 일을 하는 곳일까?",
-      [1, 1, 1, 1],
+      [0, 1, 1, 1],
       [
         { "type": "battle", "monster": 1, "percent": 80 },
         { "type": "item", "item": 1, "percent": 90 },
@@ -827,7 +827,7 @@
       3,
       7,
       "약대로 가버린 친구들이 보고싶네.",
-      [1, 1, 1, 1],
+      [1, 1, 0, 1],
       [
         { "type": "battle", "monster": 1, "percent": 65 },
         { "type": "item", "item": 1, "percent": 80 },
@@ -835,7 +835,7 @@
       ],
       "약대"
     ],
-    [4, 7, "여기도 약대건물이었어? 약대도 넓구나?", [1, 1, 1, 1], 
+    [4, 7, "여기도 약대건물이었어? 약대도 넓구나?", [1, 1, 0, 1], 
     [
         { "type": "battle", "monster": 1, "percent": 30 },
         { "type": "item", "item": 1, "percent": 40 },
@@ -846,7 +846,7 @@
       5,
       7,
       "약대는 혜화로 안가겠지?",
-      [1, 1, 1, 1],
+      [1, 1, 0, 1],
       [
         { "type": "battle", "monster": 1, "percent": 20 },
         { "type": "heal", "heal": 1, "percent": 40 },
