@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const schema = new Schema({
   name: String,
+  password: String,
   key: String,
 
   level: { type: Number, default: 1 },
@@ -17,7 +18,8 @@ const schema = new Schema({
   stradd: { type: Number, default: 0 },
   defadd: { type: Number, default: 0 },
   maxHPadd: { type: Number, default: 0 },
-  statCount: { type: Number, default: 1 },
+  statCount: { type: Number, default: 6 },
+  statFix: { type: Boolean, default: false },
   items: [
     {
       name: String,
@@ -33,11 +35,15 @@ const schema = new Schema({
 });
 
 schema.methods.incrementHP = function () {
-  const HParr = [0.1, 0.3, 0.5];
-  const healHP = Math.round(Math.random() * HParr.length);
-  this.HP += this.HP * healHP;
-  if (this.HP > this.maxHP) {
-    this.HP = this.maxHP;
+  const HParr = [0.05, 0.1, 0.15];
+  arrNum = Math.round(Math.random() * (HParr.length - 1));
+  let healHP = Math.round((this.maxHP + this.maxHPadd) * HParr[arrNum]);
+  if (healHP < 10) {
+    healHP = 15;
+  }
+  this.HP += healHP;
+  if (this.HP > this.maxHP + this.maxHPadd) {
+    this.HP = this.maxHP + this.maxHPadd;
   }
   return healHP;
 };
@@ -72,7 +78,7 @@ schema.methods.playerDie = function () {
 };
 
 schema.methods.playerInit = function () {
-  this.HP = this.maxHP;
+  this.HP = this.maxHP + this.maxHPadd;
   this.x = 9;
   this.y = 0;
   const num = this.items.length;
@@ -81,7 +87,7 @@ schema.methods.playerInit = function () {
 };
 
 schema.methods.playerExpUP = function () {
-  const exp = Math.round(50 * Math.pow(1.3, this.level - 1));
+  const exp = Math.round(50 * Math.pow(1.1, this.level - 1));
   this.exp += exp;
   return exp;
 };
@@ -93,14 +99,17 @@ schema.methods.playerLvUP = function () {
     this.level += 1;
     this.exp -= this.maxExp;
     this.maxExp = Math.round(this.maxExp * 1.5);
-    this.str += this.level;
-    this.def += this.level;
-    return true;
+    this.str += this.level - 1;
+    this.def += this.level - 1;
   }
 };
 
-schema.methods.addCount = function () {
-  this.statCount += 1;
+schema.methods.subCount = function () {
+  this.statCount -= 1;
+};
+
+schema.methods.statfix = function () {
+  this.statFix = true;
 };
 
 const Player = mongoose.model('Player', schema);

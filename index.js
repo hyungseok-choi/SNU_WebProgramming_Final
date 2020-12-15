@@ -43,15 +43,36 @@ app.get('/game', (req, res) => {
 });
 
 app.post('/signup', async (req, res) => {
-  const { name } = req.body;
-
+  const { name, password } = req.body;
   if (await Player.exists({ name })) {
-    return res.status(400).send({ error: 'Player already exists' });
+    return res.send('플레이어가 이미 존재합니다!');
   }
+
+  encryptedpw = crypto.createHash('sha512').update(password).digest('base64');
 
   const player = new Player({
     name,
+    password: encryptedpw,
   });
+
+  const key = crypto.randomBytes(24).toString('hex');
+  player.key = key;
+
+  await player.save();
+
+  return res.send({ key });
+});
+
+app.post('/signin', async (req, res) => {
+  const { name, password } = req.body;
+  encryptedpw = crypto.createHash('sha512').update(password).digest('base64');
+
+  const player = await Player.findOne({ name });
+  if (!player) {
+    return res.send('아이디를 확인해주세요!');
+  } else if (player.password !== encryptedpw) {
+    return res.send('비밀번호를 확인해주세요!');
+  }
 
   const key = crypto.randomBytes(24).toString('hex');
   player.key = key;
@@ -67,7 +88,7 @@ app.get('/stat', (req, res) => {
 
 app.post('/stat', authentication, async (req, res) => {
   const player = req.player;
-  if (player.statCount >= 5) {
+  if (player.statCount <= 0) {
     return res.send({ player });
   }
 
@@ -78,9 +99,16 @@ app.post('/stat', authentication, async (req, res) => {
   player.str = str;
   player.def = def;
   player.maxHP = player.HP = hp;
-  player.addCount();
+  player.subCount();
   await player.save();
 
+  return res.send({ player });
+});
+
+app.post('/statfix', authentication, async (req, res) => {
+  const player = req.player;
+  player.statfix();
+  await player.save();
   return res.send({ player });
 });
 
@@ -210,28 +238,44 @@ app.post('/action', authentication, async (req, res) => {
           round,
         };
       } else if (_event.type === 'heal') {
-        player.incrementHP();
-        const healed = player.incrementHP();
-        event = { description: `커피를 마셔서 ${healed}만큼 회복했다.` };
+        let healed = player.incrementHP();
+        if (player.maxHP + player.maxHPadd === player.HP) {
+          event = { description: `더이상 커피를 먹으면 카페인 중독이 될지도?` };
+        } else if (healed > player.maxHP + player.maxHPadd - player.HP) {
+          healed = player.maxHP + player.maxHPadd - player.HP;
+          event = { description: `커피를 마셔서 ${healed}만큼 회복했다.` };
+        } else {
+          event = { description: `커피를 마셔서 ${healed}만큼 회복했다.` };
+        }
       } else if (_event.type === 'item') {
-        if (player.items.length > 10) {
-          // Inventory의 개수는 10개로 한정한다 .
+        if (player.items.length > 14) {
+          // Inventory의 개수는 15개로 한정한다 .
           event = { description: `가방이 가득찼다` };
         } else {
           const item = itemManager.getRandItem();
-          event = {
-            description: `지나가다가 ${item.name}을 발견했다.`,
-          };
-          player.addstr(item.str);
-          player.adddef(item.def);
-          player.addmaxHP(item.maxHP);
-          player.items.push({
-            name: item.name,
-            str: item.str,
-            def: item.def,
-            maxHP: item.maxHP,
-            quantity: 1,
-          });
+          let duplicate = false;
+          for (let i = 0; i < player.items.length; i++) {
+            if (player.items[i].name === item.name) {
+              duplicate = true;
+            }
+          }
+          if (duplicate) {
+            event = { description: `${item.name}..? 이미 가지고 있다 ` };
+          } else {
+            event = {
+              description: `지나가다가 ${item.name}을 발견했다.`,
+            };
+            player.addstr(item.str);
+            player.adddef(item.def);
+            player.addmaxHP(item.maxHP);
+            player.items.push({
+              name: item.name,
+              str: item.str,
+              def: item.def,
+              maxHP: item.maxHP,
+              quantity: 1,
+            });
+          }
         }
       } else {
         event = {

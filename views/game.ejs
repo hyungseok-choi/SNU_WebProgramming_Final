@@ -44,7 +44,7 @@
           <button value="0">북</button>
         </div>
         <div id="minimap"></div>
-        <div id="game"></div>
+        <div id="game" , style="width: 450"></div>
         <div id="event_result"></div>
         <div id="run">
           <button value="4">도망친다</button>
@@ -138,7 +138,7 @@
 
           $('#playerid').text(player.name);
           $('#lv').text(player.level);
-          $('#exp').text(player.exp);
+          $('#exp').text(`${player.exp} / ${player.maxExp}`);
           $('#expbar').text(showBar(player.exp, player.maxExp));
           $('#str').text(
             `${player.str + player.stradd}(${player.str + '+' + player.stradd})`
