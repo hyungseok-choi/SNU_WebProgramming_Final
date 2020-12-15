@@ -83,7 +83,7 @@ schema.methods.playerInit = function () {
   this.y = 0;
   const num = this.items.length;
   const randomNumber = Math.floor(Math.random() * num);
-  this.exp = Math.round(this.exp*0.9)
+  this.exp = Math.round(this.exp * 0.9);
   return this.items.splice(randomNumber, 1);
 };
 
@@ -96,12 +96,13 @@ schema.methods.playerExpUP = function () {
 schema.methods.playerLvUP = function () {
   if (this.exp >= this.maxExp) {
     this.maxHP = this.maxHP + (this.level - 1) * 10;
-    this.HP = this.maxHP+this.maxHPadd;
+    this.HP = this.maxHP + this.maxHPadd;
     this.level += 1;
     this.exp -= this.maxExp;
     this.maxExp = Math.round(this.maxExp * 1.5);
     this.str += 5;
     this.def += 2;
+    return true;
   }
 };
 
