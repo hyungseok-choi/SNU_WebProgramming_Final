@@ -8,14 +8,20 @@
     ></script>
   </head>
   <body>
-    <%= gameName %>에 온 걸 환영합니다. 당신의 이름은?
-    <div class=""></div>
-
-    <form id="form" action="/signup">
-      이름: <input name="name" />
-      <input type="submit" value="확인" />
-    </form>
-
+    <div class="container" style="display: flex; justify-content: center; align-items: center; height: -webkit-fill-available;">
+      <div style="flex-direction: column; padding: 50px; border: 4px dashed #bcbcbc;">
+        <div class="gamename" style="font-size: 30px">
+          <%= gameName %>에 온 걸 환영합니다. 당신의 이름은?
+        </div>
+        <div class="inputbox">
+        <form id="form" action="/signup">
+          이름: <input name="name" />
+          비밀번호: <input type="password">
+          <input type="submit" value="확인" />
+        </form>
+        </div>
+      </div>
+    </div>
     <script>
       const key = localStorage.getItem("_key");
       if (key) {
@@ -27,7 +33,7 @@
         $.post(action, $(this).serialize(), (res) => {
           if (res.key) {
             localStorage.setItem("_key", res.key);
-            location.href = "/game";
+            location.href = "/stat";
           } else {
             alert("에러가 발생했습니다. 다시 시도해주세요.");
           }

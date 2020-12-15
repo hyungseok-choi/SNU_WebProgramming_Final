@@ -42,8 +42,8 @@ app.get('/game', (req, res) => {
 })
 
 app.post('/signup', async (req, res) => {
-  const { name } = req.body
-
+  const { name, password } = req.body
+  
   if (await Player.exists({ name })) {
     return res.status(400).send({ error: 'Player already exists' })
   }
@@ -66,7 +66,7 @@ app.get('/stat', (req, res) => {
 
 app.post('/stat', authentication, async (req, res) => {
   const player = req.player
-  if(player.statCount >= 5){
+  if(player.statCount <= 0){
     return res.send({player});
   }
   
@@ -77,7 +77,7 @@ app.post('/stat', authentication, async (req, res) => {
   player.str = str;
   player.def = def;
   player.maxHP = player.HP = hp;
-  player.addCount();
+  player.subCount();
   await player.save();
   
   return res.send({player})

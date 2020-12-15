@@ -10,13 +10,18 @@
   ></script>
 </head>
 <body>
-  <div class="show stat">
-    str: <span id="str">3</span>
-    def: <span id="def">2</span>
-    maxHP: <span id="maxHP">0</span>
-    초기화 가능 횟수: <span id="resetcount">5/5</span>
-    <button id="reset">능력 재설정!</button>
-    <button id="confirm">이 능력치로 결정</button>
+  <div class="show_container" style="display: flex; justify-content: center; align-items: center; height: -webkit-fill-available;">
+    <div class="show_stat" style="flex-direction: column; padding: 50px; border: 4px dashed #bcbcbc;">
+      <div><h2 id="id"></h2></div>
+      <div>str: <span id="str">3</span></div>
+      <div>def: <span id="def">2</span></div>
+      <div>maxHP: <span id="maxHP">0</span></div>
+      <div>능력 재설정 가능 횟수: <strong id="resetCount">5</strong></div>
+      <div class="bts" style="padding-top: 30px;">
+        <button id="reset">능력 재설정!</button>
+        <button id="confirm" onclick="location.href='/game'">이 능력치로 결정</button>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -30,10 +35,11 @@
             method: "POST"
           }).done((req) => {
             const {player} = req;
+            $('#id').text(player.name);
             $('#str').text(player.str);
             $('#def').text(player.def);
             $('#maxHP').text(player.maxHP);
-            $('#resetcount').text(`${player.statCount}/5`);
+            $('#resetCount').text(`${player.statCount}`);
           });
     }
 
@@ -44,7 +50,15 @@
     
     getData();
 
-    $('#reset').click(getData);
+    $('#reset').click(() => {
+      const num = $('#resetCount').text();
+      if(num <= 0){
+        alert("더 이상 초기화를 할 수 없습니다!")
+      } else{
+        getData();
+      }
+    });
+    
     
 
   </script>
