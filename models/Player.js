@@ -8,15 +8,16 @@ const schema = new Schema({
   level: { type: Number, default: 1 },
   exp: { type: Number, default: 0 },
   maxExp: { type: Number, default: 100 },
-  maxHP: { type: Number, default: 10 },
-  HP: { type: Number, default: 10 },
-  str: { type: Number, default: 5 },
-  def: { type: Number, default: 5 },
+  maxHP: { type: Number, default: 100 },
+  HP: { type: Number, default: 100 },
+  str: { type: Number, default: 3 },
+  def: { type: Number, default: 2 },
   x: { type: Number, default: 3 },
   y: { type: Number, default: 1 },
   stradd: { type: Number, default: 0 },
   defadd: { type: Number, default: 0 },
   maxHPadd: { type: Number, default: 0 },
+  statCount: { type: Number, default: 1 },
   items: [
     {
       name: String,
@@ -37,15 +38,15 @@ schema.methods.incrementHP = function (val) {
 }
 
 schema.methods.addstr = function (val) {
-  this.stradd = this.stradd + val
+  this.stradd += val
 }
 
 schema.methods.adddef = function (val) {
-  this.defadd = this.defadd + val
+  this.defadd += val
 }
 
 schema.methods.addmaxHP = function (val) {
-  this.maxHPadd = this.maxHPadd + val
+  this.maxHPadd += val
 }
 
 schema.methods.monsterAtk = function (monster) {
@@ -84,8 +85,12 @@ schema.methods.playerLvUP = function () {
     this.HP = this.maxHP
     this.level += 1
     this.exp -= this.maxExp
-    this.maxExp = Number(this.maxExp * 1.5)
+    this.maxExp = Math.round((this.maxExp * 1.5))
   }
+}
+
+schema.methods.addCount = function () {
+  this.statCount += 1;
 }
 
 const Player = mongoose.model('Player', schema)
