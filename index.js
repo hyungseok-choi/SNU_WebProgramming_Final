@@ -223,24 +223,34 @@ app.post('/action', authentication, async (req, res) => {
         const healed = player.incrementHP()
         event = { description: `커피를 마셔서 ${healed}만큼 회복했다.` }
       } else if (_event.type === 'item') {
-        if (player.items.length > 10) {
-          // Inventory의 개수는 10개로 한정한다 .
+        if (player.items.length > 14) {
+          // Inventory의 개수는 15개로 한정한다 .
           event = { description: `가방이 가득찼다` }
         } else {
           const item = itemManager.getRandItem()
-          event = {
-            description: `지나가다가 ${item.name}을 발견했다.`,
+          let duplicate = false;
+          for(let i = 0; i < player.items.length; i++){
+            if(player.items[i].name === item.name){
+              duplicate= true;
+            }
           }
-          player.addstr(item.str)
-          player.adddef(item.def)
-          player.addmaxHP(item.maxHP)
-          player.items.push({
-            name: item.name,
-            str: item.str,
-            def: item.def,
-            maxHP: item.maxHP,
-            quantity: 1,
-          })
+          if(duplicate){
+            event = { description: `${item.name}..? 이미 가지고 있다 `}
+          } else{
+            event = {
+              description: `지나가다가 ${item.name}을 발견했다.`,
+            }
+            player.addstr(item.str)
+            player.adddef(item.def)
+            player.addmaxHP(item.maxHP)
+            player.items.push({
+              name: item.name,
+              str: item.str,
+              def: item.def,
+              maxHP: item.maxHP,
+              quantity: 1,
+            })
+          }
         }
       } else if (_event.type === 'boss')
       {
