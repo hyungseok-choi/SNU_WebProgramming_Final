@@ -113,18 +113,19 @@ app.post('/action', authentication, async (req, res) => {
     player.y = y
 
     const events = field.events
-    let _events = {}
+    let _event = {}
 
     if (events.length > 0) {
-      // TODO : 확률별로 이벤트 발생하도록 변경
-      // 한 Field에 있는 event 개수는 최대 2개라고 가정
-      if (Math.random() * 100 < parseInt(events[0].percent)) {
+      let probability = Math.random()
+      if (probability * 100 < parseInt(events[0].percent)) {
         _event = events[0]
-      } else {
+      } else if (probability * 100 < parseInt(events[1].percent)){
         _event = events[1]
+      } else {
+        _event = {"type": "nothing"}
       }
       if (_event.type === 'battle') {
-        // TODO: 이벤트 별로 events.json 에서 불러와 이벤트 처리
+
 
         // 몬스터 선택
         const [randomMonster, middleName] = monsterManager.meetRandMonster()
@@ -189,8 +190,8 @@ app.post('/action', authentication, async (req, res) => {
 
         description += '--------전투종료---------<br>'
       } else if (_event.type === 'heal') {
-        event = { description: '포션을 획득해 체력을 회복했다.' }
-        player.incrementHP(1)
+        event = { description: '커피를 마시니까 살 것 같다.' }
+        player.incrementHP()
         player.HP = Math.min(player.maxHP, player.HP + 1)
       } else if (_event.type === 'item') {
         if (player.items.length > 10) {
@@ -199,7 +200,7 @@ app.post('/action', authentication, async (req, res) => {
         } else {
           const item = itemManager.getRandItem()
           event = {
-            description: `땅에서 반짝이는 ${item.name}을 발견했다.`,
+            description: `지나가다가 ${item.name}을 발견했다.`,
           }
           player.addstr(item.str)
           player.adddef(item.def)
@@ -211,6 +212,14 @@ app.post('/action', authentication, async (req, res) => {
             maxHP: item.maxHP,
             quantity: 1,
           })
+        }
+      } else if (_event.type === 'boss')
+      {
+        //일반 전투랑 똑같은데 이름만 randommonster를 boss로 바꿔주세용
+
+      } else {
+        event = {
+          description: `아무일도 일어나지 않았다`,
         }
       }
     }

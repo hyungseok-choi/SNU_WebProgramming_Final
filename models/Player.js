@@ -32,9 +32,10 @@ const schema = new Schema({
   ],
 })
 
-schema.methods.incrementHP = function (val) {
-  const hp = this.HP + val
-  this.HP = Math.min(Math.max(0, hp), this.maxHP)
+schema.methods.incrementHP = function () {
+  const HParr = [0.1, 0.3, 0.5]
+  const healHP = Math.round(Math.random()*HParr.length)
+  this.HP += this.HP*healHP
 }
 
 schema.methods.addstr = function (val) {
@@ -76,12 +77,12 @@ schema.methods.playerInit = function () {
 }
 
 schema.methods.playerExpUP = function () {
-  //this.exp += 50
+  this.exp = Math.round(50*Math.pow(1.3,this.level-1))
 }
 
 schema.methods.playerLvUP = function () {
   if (this.exp >= this.maxExp) {
-    this.maxHP += this.maxHP * 1.5
+    this.maxHP = this.maxHP + (this.level-1)*10
     this.HP = this.maxHP
     this.level += 1
     this.exp -= this.maxExp
