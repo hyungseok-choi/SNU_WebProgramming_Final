@@ -190,9 +190,9 @@ app.post('/action', authentication, async (req, res) => {
 
         description += '--------전투종료---------<br>'
       } else if (_event.type === 'heal') {
-        event = { description: '커피를 마시니까 살 것 같다.' }
         player.incrementHP()
-        player.HP = Math.min(player.maxHP, player.HP + 1)
+        const healed = player.incrementHP()
+        event = { description: `커피를 마셔서 ${healed}만큼 회복했다.` }
       } else if (_event.type === 'item') {
         if (player.items.length > 10) {
           // Inventory의 개수는 10개로 한정한다 .

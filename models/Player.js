@@ -36,6 +36,10 @@ schema.methods.incrementHP = function () {
   const HParr = [0.1, 0.3, 0.5]
   const healHP = Math.round(Math.random()*HParr.length)
   this.HP += this.HP*healHP
+  if (this.HP > this.maxHP){
+    this.HP = this.maxHP
+  }
+  return healHP
 }
 
 schema.methods.addstr = function (val) {
