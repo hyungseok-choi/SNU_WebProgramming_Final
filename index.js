@@ -43,14 +43,36 @@ app.get('/game', (req, res) => {
 
 app.post('/signup', async (req, res) => {
   const { name, password } = req.body
-  
   if (await Player.exists({ name })) {
-    return res.status(400).send({ error: 'Player already exists' })
+    return res.send("플레이어가 이미 존재합니다!")
   }
 
+  encryptedpw = crypto.createHash('sha512').update(password).digest('base64');
+  
   const player = new Player({
-    name
+    name,
+    password: encryptedpw
   })
+
+  const key = crypto.randomBytes(24).toString('hex')
+  player.key = key
+
+  await player.save()
+
+  return res.send({ key })
+})
+
+
+app.post('/signin', async (req, res) => {
+  const { name, password } = req.body
+  encryptedpw = crypto.createHash('sha512').update(password).digest('base64');
+
+  const player = await Player.findOne({ name })
+  if (!player) {
+    return res.send("아이디를 확인해주세요!")
+  } else if (player.password !== encryptedpw){
+    return res.send("비밀번호를 확인해주세요!")
+  }
 
   const key = crypto.randomBytes(24).toString('hex')
   player.key = key
@@ -80,6 +102,13 @@ app.post('/stat', authentication, async (req, res) => {
   player.subCount();
   await player.save();
   
+  return res.send({player})
+})
+
+app.post('/statfix', authentication, async (req, res) => {
+  const player = req.player
+  player.statfix();
+  await player.save();
   return res.send({player})
 })
 

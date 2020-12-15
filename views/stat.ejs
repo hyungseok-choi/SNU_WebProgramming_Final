@@ -19,7 +19,7 @@
       <div>능력 재설정 가능 횟수: <strong id="resetCount">5</strong></div>
       <div class="bts" style="padding-top: 30px;">
         <button id="reset">능력 재설정!</button>
-        <button id="confirm" onclick="location.href='/game'">이 능력치로 결정</button>
+        <button id="confirm">이 능력치로 결정</button>
       </div>
     </div>
   </div>
@@ -35,6 +35,9 @@
             method: "POST"
           }).done((req) => {
             const {player} = req;
+            if(player.statFix === true){
+              window.location.replace('/game');
+            }
             $('#id').text(player.name);
             $('#str').text(player.str);
             $('#def').text(player.def);
@@ -58,6 +61,19 @@
         getData();
       }
     });
+
+    $('#confirm').click(() => {
+      $.ajax({
+            url: "/statfix",
+            headers: {
+              Authorization: "Bearer " + key,
+            },
+            method: "POST"
+          }).done((req) => {
+            window.location.replace('/game');
+          });
+    })
+    
     
     
 
