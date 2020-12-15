@@ -219,7 +219,7 @@ app.post('/action', authentication, async (req, res) => {
             const itemLoss = await player.playerInit();
             description += `${middleName} ${randomMonster.name}의 공격으로 사망했습니다.<br>`;
             if (itemLoss.length) {
-              description += `${itemLoss[0].name}를 ${randomMonster.name}에게 뺐겼다...<br>`;
+              description += `${itemLoss[0].name}을(를) ${randomMonster.name}에게 뺏겼다...<br>`;
             }
             description += `학교 정문으로 돌아갑니다.<br>`;
             field = mapManager.getField(9, 0);
@@ -361,7 +361,7 @@ app.post('/action', authentication, async (req, res) => {
           const itemLoss = await player.playerInit();
           description += `${middleName} ${monsterName}의 공격으로 사망했습니다.<br>`;
           if (itemLoss.length) {
-            description += `${itemLoss[0].name}를 ${monsterName}에게 뺐겼다...<br>`;
+            description += `${itemLoss[0].name}을(를) ${monsterName}에게 뺏겼다...<br>`;
           }
           description += `학교 정문으로 돌아갑니다.<br>`;
           field = mapManager.getField(9, 0);
