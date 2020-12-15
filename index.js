@@ -349,7 +349,6 @@ app.post('/action', authentication, async (req, res) => {
         if (player.HP === 0) {
           const itemLoss = await player.playerInit();
           description += `${middleName} ${monsterName}의 공격으로 사망했습니다.<br>`;
-          console.log(itemLoss)
           if (itemLoss.length) {
             description += `${itemLoss[0].name}를 ${monsterName}에게 뺐겼다...<br>`;
           }

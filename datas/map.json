@@ -175,7 +175,7 @@
       "우와! 엄청 큰 대운동장! 저기선 누가 경기를 할까?",
       [1, 1, 1, 1],
       [
-        { "type": "battle", "monster": 1, "percent": 100 },
+        { "type": "battle", "monster": 1, "percent": 20 },
         { "type": "item", "item": 1, "percent": 50 },
         { "type": "nothing", "percent": 100 }
       ],
