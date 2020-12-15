@@ -43,9 +43,13 @@
           <button value="2">남</button>
           <button value="0">북</button>
         </div>
-        <div id ="minimap"></div>
-        <div id="game", style="width: 450;"></div>
+        <div id="minimap"></div>
+        <div id="game" , style="width: 450"></div>
         <div id="event_result"></div>
+        <div id="run">
+          <button value="4">도망친다</button>
+          <button value="5">끝까지 싸운다</button>
+        </div>
       </div>
       <div class="inventory" style="padding: 20px">
         ════════ Inventory ══════════
@@ -56,100 +60,134 @@
     <script>
       const sendAction = (action, params = {}) => {
         $.ajax({
-          url: "/action",
+          url: '/action',
           headers: {
-            Authorization: "Bearer " + key,
+            Authorization: 'Bearer ' + key,
           },
-          method: "POST",
-          data: `action=${action}&direction=${params.direction}`,
+          method: 'POST',
+          data: `action=${action}&direction=${params.direction}&description=${params.description}&run=${params.run}&monsterStr=${params.monsterStr}&monsterDef=${params.monsterDef}&monsterHP=${params.monsterHP}&monsterName=${params.monsterName}&middleName=${params.middleName}&round=${params.round}`,
         }).done((req) => {
-          const { player, field, event } = req;
-          $("#game").text(field.description);
-          $("#position").text(`(${field.x},${field.y}) ${field.college}`);
+          const { player, field, event, run } = req;
+          $('#game').text(field.description);
+          $('#position').text(`(${field.x},${field.y}) ${field.college}`);
           const x = field.x;
           const y = field.y;
           field.canGo.forEach((canGo, idx) => {
             const dom = $(`button[value="${idx}"]`);
             canGo === 0 ? dom.hide() : dom.show();
-            dom.unbind("click");
+            dom.unbind('click');
             if (canGo === 1) {
-              dom.bind("click", function () {
-                sendAction("move", { direction: idx });
+              dom.bind('click', function () {
+                sendAction('move', { direction: idx });
               });
             }
           });
-
+          for (let i = 4; i < 6; i++) {
+            const dom = $(`button[value="${i}"]`);
+            dom.hide();
+            dom.unbind('click');
+          }
+          if (run) {
+            for (let i = 0; i < 4; i++) {
+              const dom = $(`button[value="${i}"]`);
+              dom.hide();
+              dom.unbind('click');
+            }
+            for (let i = 4; i < 6; i++) {
+              const dom = $(`button[value="${i}"]`);
+              dom.show();
+              dom.bind('click', function () {
+                sendAction('run', {
+                  description: event.description,
+                  monsterStr: event.monsterStr,
+                  monsterDef: event.monsterDef,
+                  monsterHP: event.monsterHP,
+                  monsterName: event.monsterName,
+                  middleName: event.middleName,
+                  run: i,
+                  round: event.round,
+                });
+              });
+            }
+          }
           function showBar(curr, max) {
-            let bar = "[";
+            let bar = '[';
             for (let i = 0; i < (curr / max) * 30; i++) {
-              bar += "/";
+              bar += '/';
             }
             for (let i = 0; i < (1 - curr / max) * 30; i++) {
-              bar += "-";
+              bar += '-';
             }
-            bar += "]";
+            bar += ']';
             return bar;
           }
-        function minimap(x, y){
-          let map = "";
-          for(let i = 9; i >= 0; i--){
-            for(let j = 0; j<10; j++){
-              if(i===y && j===x){
-                map += "■";
-              } else{
-                map += "□";
+          function minimap(x, y) {
+            let map = '';
+            for (let i = 9; i >= 0; i--) {
+              for (let j = 0; j < 10; j++) {
+                if (i === y && j === x) {
+                  map += '■';
+                } else {
+                  map += '□';
+                }
               }
+              map += '\n';
             }
-            map += "\n";
+            return map;
           }
-          return map;
-        }
-      
-                
-        $('#playerid').text(player.name);
-        $('#lv').text(player.level);
-        $('#exp').text(`${player.exp} / ${player.maxExp}`);
-        $('#expbar').text(showBar(player.exp, player.maxExp));
-        $('#str').text(player.str + player.stradd);
-        $('#def').text(player.def + player.defadd);
-        const mmap = $('#minimap').text(minimap(player.x, player.y));
-        mmap.html(mmap.html().replace(/\n/g,'<br/>'));
 
-        if (event) {
-          $("#event_result").html(`<p>${event.description}</p>`);
-        } else {
-          $("#event_result").text("아무일도 일어나지 않았다.");
-        }
+          $('#playerid').text(player.name);
+          $('#lv').text(player.level);
+          $('#exp').text(`${player.exp} / ${player.maxExp}`);
+          $('#expbar').text(showBar(player.exp, player.maxExp));
+          $('#str').text(
+            `${player.str + player.stradd}(${player.str + '+' + player.stradd})`
+          );
+          $('#def').text(
+            `${player.def + player.defadd}(${player.def + '+' + player.defadd})`
+          );
+          const mmap = $('#minimap').text(minimap(player.x, player.y));
+          mmap.html(mmap.html().replace(/\n/g, '<br/>'));
 
-        $("#HP").text(`${player.HP} / ${player.maxHP + player.maxHPadd}`);
-        $("#HPbar").text(showBar(player.HP, player.maxHP + player.maxHPadd));
+          if (event) {
+            $('#event_result').html(`<p>${event.description}</p>`);
+          } else {
+            $('#event_result').text('아무일도 일어나지 않았다.');
+          }
 
-        let items = "";
-        for (let i = 0; i < player.items.length; i++) {
-          const item = player.items[i];
-          items +=
-            "\n║" +
-            item.name +
-            " ║ str + " +
-            item.str +
-            " ║ def + " +
-            item.def +
-            " ║ maxHP + " +
-            item.maxHP +
-            " ║\n";
-        }
+          $('#HP').text(
+            `${player.HP} / ${player.maxHP + player.maxHPadd}(${player.maxHP}+${
+              player.maxHPadd
+            })`
+          );
+          $('#HPbar').text(showBar(player.HP, player.maxHP + player.maxHPadd));
 
-        var obj = $("#items").text(items);
-        obj.html(obj.html().replace(/\n/g, "<br/>"));
-      });
+          let items = '';
+          for (let i = 0; i < player.items.length; i++) {
+            const item = player.items[i];
+            items +=
+              '\n║' +
+              item.name +
+              ' ║ str + ' +
+              item.str +
+              ' ║ def + ' +
+              item.def +
+              ' ║ maxHP + ' +
+              item.maxHP +
+              ' ║\n';
+          }
+
+          var obj = $('#items').text(items);
+          obj.html(obj.html().replace(/\n/g, '<br/>'));
+        });
       };
 
-      const key = localStorage.getItem("_key");
+      const key = localStorage.getItem('_key');
       if (!key) {
-        location.href = "/";
+        location.href = '/';
       }
 
-      sendAction("query");
+      sendAction('query');
     </script>
   </body>
 </html>
