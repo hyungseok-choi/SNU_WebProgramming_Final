@@ -83,9 +83,9 @@ schema.methods.playerInit = function () {
   this.y = 0;
   const num = this.items.length;
   const randomNumber = Math.floor(Math.random() * num);
-  this.exp = Math.round(this.exp*0.9)
+  this.exp = Math.round(this.exp * 0.9);
   const delitem = this.items.splice(randomNumber, 1);
-  if(delitem.length){
+  if (delitem.length) {
     this.stradd -= delitem[0].str;
     this.defadd -= delitem[0].def;
     this.maxHPadd -= delitem[0].maxHP;
