@@ -35,7 +35,7 @@ const schema = new Schema({
 });
 
 schema.methods.incrementHP = function () {
-  const HParr = [0.05, 0.1, 0.15];
+  const HParr = [0.1, 0.25, 0.5];
   arrNum = Math.round(Math.random() * (HParr.length - 1));
   let healHP = Math.round((this.maxHP + this.maxHPadd) * HParr[arrNum]);
   if (healHP < 10) {
