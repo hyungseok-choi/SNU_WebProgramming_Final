@@ -83,6 +83,10 @@ schema.methods.playerInit = function () {
   this.y = 0;
   const num = this.items.length;
   const randomNumber = Math.floor(Math.random() * num);
+  console.log(randomNumber);
+  this.addstr -= this.items[randomNumber].str;
+  this.adddef -= this.items[randomNumber].def;
+  this.addmaxHP -= this.items[randomNumber].maxHP;
   this.items.splice(randomNumber, 1);
 };
 
