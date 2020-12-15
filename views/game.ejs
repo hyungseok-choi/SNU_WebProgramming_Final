@@ -127,7 +127,9 @@
               for (let j = 0; j < 10; j++) {
                 if (i === y && j === x) {
                   map += '■';
-                } else {
+                } else if(i=== 9 && j === 5){
+                  map += '♥';
+                } else{
                   map += '□';
                 }
               }
