@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const schema = new Schema({
   name: String,
@@ -30,78 +30,81 @@ const schema = new Schema({
       maxHP: Number,
     },
   ],
-})
+});
 
 schema.methods.incrementHP = function () {
-  const HParr = [0.1, 0.3, 0.5]
-  const healHP = Math.round(Math.random()*HParr.length)
-  this.HP += this.HP*healHP
-  if (this.HP > this.maxHP){
-    this.HP = this.maxHP
+  const HParr = [0.1, 0.3, 0.5];
+  const healHP = Math.round(Math.random() * HParr.length);
+  this.HP += this.HP * healHP;
+  if (this.HP > this.maxHP) {
+    this.HP = this.maxHP;
   }
-  return healHP
-}
+  return healHP;
+};
 
 schema.methods.addstr = function (val) {
-  this.stradd += val
-}
+  this.stradd += val;
+};
 
 schema.methods.adddef = function (val) {
-  this.defadd += val
-}
+  this.defadd += val;
+};
 
 schema.methods.addmaxHP = function (val) {
-  this.maxHPadd += val
-}
+  this.maxHPadd += val;
+};
 
 schema.methods.monsterAtk = function (monster) {
-  let damage = monster.str - this.def
+  let damage = monster.str - this.def;
   if (damage <= 0) {
-    damage = Math.round(Math.random())
+    damage = Math.round(Math.random());
   }
-  this.HP = this.HP - damage
-  return damage
-}
+  this.HP = this.HP - damage;
+  return damage;
+};
 
 schema.methods.playerDie = function () {
   if (this.HP <= 0) {
-    return 1
+    return 1;
   } else {
-    return 0
+    return 0;
   }
-}
+};
 
 schema.methods.playerInit = function () {
-  this.HP = this.maxHP
-  this.x = 9
-  this.y = 0
-  const num = this.items.length
-  const randomNumber = Math.floor(Math.random() * num)
-  this.items.splice(randomNumber, 1)
-}
+  this.HP = this.maxHP;
+  this.x = 9;
+  this.y = 0;
+  const num = this.items.length;
+  const randomNumber = Math.floor(Math.random() * num);
+  this.items.splice(randomNumber, 1);
+};
 
 schema.methods.playerExpUP = function () {
-  this.exp = Math.round(50*Math.pow(1.3,this.level-1))
-}
+  const exp = Math.round(50 * Math.pow(1.3, this.level - 1));
+  this.exp += exp;
+  return exp;
+};
 
 schema.methods.playerLvUP = function () {
   if (this.exp >= this.maxExp) {
-    this.maxHP = this.maxHP + (this.level-1)*10
-    this.HP = this.maxHP
-    this.level += 1
-    this.exp -= this.maxExp
-    this.maxExp = Math.round((this.maxExp * 1.5))
-    this.str += this.level
-    this.def += this.level
+    this.maxHP = this.maxHP + (this.level - 1) * 10;
+    this.HP = this.maxHP;
+    this.level += 1;
+    this.exp -= this.maxExp;
+    this.maxExp = Math.round(this.maxExp * 1.5);
+    this.str += this.level;
+    this.def += this.level;
+    return true;
   }
-}
+};
 
 schema.methods.addCount = function () {
   this.statCount += 1;
-}
+};
 
-const Player = mongoose.model('Player', schema)
+const Player = mongoose.model('Player', schema);
 
 module.exports = {
   Player,
-}
+};
